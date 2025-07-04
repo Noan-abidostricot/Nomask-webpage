@@ -176,3 +176,4 @@ uv.lock
 
 #Users uploads
 media/.django_tailwind_cli/*.exe
+.django_tailwind_cli/*.exe
