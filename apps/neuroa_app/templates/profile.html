@@ -1,0 +1,496 @@
+{% extends 'base.html' %}
+
+{% block title %}Mon Profil | NoMask{% endblock %}
+
+{% load static %}
+
+{% load custom_filters %}
+{% load month_filters %}
+
+{% block extra_head %}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<!-- CONTAINER GLOBAL -->
+<div id="app" class="bg-[var(--bg_color_nonary)] min-h-screen relative">
+    <!-- SECTION IMAGE CANDIDAT + PRENOM NOM -->
+    <section class="bg-[var(--bg_color_quinary)] py-8 border-b-2 border-[var(--border_color_quaternary)] pt-24 relative md:py-11 md:pt-32">
+        <div class="max-w-[1440px] mx-auto px-[52px] lg:px-[103px]">
+            <!-- button retour -->
+             <a class="button_retour" href="{% url 'job_search' %}"><i class="fa-solid fa-arrow-left text-sm"></i>Retour</a>
+          <div class="flex flex-col items-center justify-center mt-8 md:flex-row md:items-start md:gap-x-11">
+              <!-- container image candidat + icon modifier et supprimer image -->
+              <div class="flex flex-col items-center justify-center">
+                  <!-- image candidat -->
+                  {% if not user.photo %}
+                  <div class="w-32 h-32 lg:w-52 lg:h-52 rounded-full object-cover">
+                      <img id="profilePhoto" src="{% static '/neuroa_app/img/default_profile.png' %}" alt="Photo de profil" class="w-full h-full rounded-full object-cover">
+                    </div>
+                  {% else %}
+                  <div class="w-32 h-32 lg:w-52 lg:h-52 rounded-full object-cover">
+                      <img id="profilePhoto" src="{{ user.photo.url }}" alt="Photo de profil" class="w-full h-full rounded-full object-cover">
+                    </div>
+                  {% endif %}
+                  <div class="max-w-32 lg:max-w-52">
+                      <div style="display: none;">
+                          {{ user_form.photo }}
+                      </div>
+                  </div>
+                  <!-- container icons modifier et supprimer -->
+                  <div class="flex items-center justify-center gap-x-4 mt-3">
+                      <button class="button_xs_smartphone" id="uploadPhotoBtn" title="format .jpg ou .png, 2 Mo maximum"><i class="fas fa-pencil text-sm text-[var(--text_color_tertiary)]"></i></button>
+                      <button class="button_xs_2" id="deletePhotoBtn"><i class="fas fa-trash-can text-sm text-[var(--text_color_tertiary)]"></i></button>
+                  </div>
+              </div>
+              <!-- container nom et prenom candidat + icon modifier + nom du poste et description -->
+                  <div class="mt-10 md:mt-0">
+                      <div class="flex items-center gap-x-7">
+                          <!-- nom prenom -->
+                          <h1 class="">{{ user.first_name }} {{ user.last_name }}</h1>
+                          <!-- icon modifier nom prenom -->
+                          <button class="editBasicInfoBtn hidden button_xs_desktop lg:flex"><i class="fas fa-pencil text-sm text-[var(--text_color_tertiary)] md:text-lg"></i>Modifier</button>
+                          <button class="editBasicInfoBtn button_xs_smartphone lg:hidden"><i class="fas fa-pencil text-sm text-[var(--text_color_tertiary)] md:text-lg"></i></button>
+                      </div>
+                      <!-- nom du poste + description -->
+                      <div class="max-w-[308px] mt-4 md:mt-4 md:max-w-[550px]">
+                          <div class="flex items-center gap-x-2 flex-wrap">
+                              <h4 class=""><i class="fa-solid fa-briefcase text-xl text-[var(--text_color_quaternary)] pr-3.5"></i>Poste recherché :</h4>
+                              <h4>{{ candidate.job }}</h4>
+                          </div>
+                              <h4 class="ml-0.5 m-2 md:mt-3"><i class="fa-solid fa-file-lines text-xl text-[var(--text_color_quaternary)] pr-3.5"></i>Présentation :</h4>
+                              <pre class="p_interligne mt-0.5 md:ml-8">{{ user.description|safe }}</pre>
+                      </div>
+                  </div>
+          </div>
+      </div>
+    </section>
+
+    <div class="px-[36px]">
+        <!-- SECTION VOS INFORMATIONS -->
+        <section class="bg-[var(--bg_color_duodenary)] rounded-md shadow-lg py-6 px-4 mt-11 max-w-[994px] w-full mx-auto md:mt-20 md:px-32">
+            <!-- container titre vos informations + icon modifier -->
+            <div class="flex items-center justify-between">
+                <h3 class="text-[var(--text_color_nonary)]">Vos informations</h3>
+                <button class="editCandidateInfoBtn hidden button_xs_desktop lg:flex"><i class="fas fa-pencil text-sm text-[var(--text_color_tertiary)]"></i>Modifier</button>
+                <button class="editCandidateInfoBtn button_xs_smartphone lg:hidden"><i class="fas fa-pencil text-sm text-[var(--text_color_tertiary)]"></i></button>
+            </div>
+            <!-- container lieu -->
+            <div class="flex items-center gap-x-1.5 pt-4">
+                <h4 class="">Lieu :</h4>
+                <p class="">{{ candidate.city }}</p>
+            </div>
+            <!-- container pays -->
+            <div class="flex items-center gap-x-1.5 pt-3">
+                <h4 class="">Pays :</h4>
+                <p class="">{{ candidate.country }}</p>
+            </div>
+            <!-- container mobilités -->
+            <div class="flex items-center gap-x-1.5 pt-3">
+                <h4 class="0">Mobilité :</h4>
+                <p class="">{{ candidate.get_mobilities_display }}</p>
+            </div>
+            <!-- container télétravail -->
+            <div class="flex items-center gap-x-1.5 pt-3">
+                <h4 class="">Télétravail souhaité :</h4>
+                <p class="">{{ candidate.get_candidate_remote_display }}</p>
+            </div>
+            <!-- container rqth -->
+            <div class="flex items-center gap-x-1.5 pt-3">
+                <h4 class="">RQTH :</h4>
+                <p class="">{{ candidate.get_rqth_display }}</p>
+            </div>
+            <h4 class="pt-3">Besoins d'adaptations des conditions de travail :</h4>
+            {% if candidate.special_needs_comments  %}
+                <div class="bg-[var(--bg_color_senary)] border border-[var(--border_color_primary)] py-2.5 px-5 mt-2 rounded">
+            {% endif %}
+                <pre class="p_interligne">{{ candidate.special_needs_comments|safe }}</pre>
+            {% if candidate.special_needs_comments  %}
+                </div>
+            {% endif %}
+        </section>
+
+        <!-- SECTION DES EXPERIENCES PRO + ACTIVITE PERSO + ACTIVITE PERSO + FORMATION -->
+        {% for exp_type, exp_label in experience_types %}
+            <section class="bg-[var(--bg_color_duodenary)] rounded-md shadow-lg py-6 px-4 mt-11 max-w-[994px] w-full mx-auto md:mt-20 md:px-32">
+                <!-- container titre de la section + icon ajouter -->
+                <div class="flex flex-row justify-between sm:gap-x-5">
+                    <h3 class="text-[var(--text_color_nonary)]">{{ exp_label }}</h3>
+                    <button class="addExperienceBtn hidden button_add_desktop lg:flex" data-type="{{ exp_type }}"><i class="fas fa-plus text-sm text-[var(--text_color_tertiary)]"></i>Ajouter</button>
+                    <button class="addExperienceBtn button_add_smartphone lg:hidden" data-type="{{ exp_type }}"><i class="fas fa-plus text-sm text-[var(--text_color_tertiary)]"></i></button>
+                </div>
+                <!-- container nom de l'activité + nom de l'organisation + tags type de contrat + lieu + dates +ce que le candidat a fait -->
+                <div id="experiencesList-{{ exp_type }}">
+                    {% for experience in grouped_experiences|get_item:exp_type %}
+                        <div class="exp-card flex items-baseline justify-between border-t-2 border-[var(--border_color_quaternary)] w-full mt-6">
+                            <div class="">
+                                <!-- nom de l'activité -->
+                                {% if exp_type == "pro" or exp_type == "personal" %}
+                                    <h4 class="h4_bold mt-6">{{ experience.name }}</h4>
+                                {% endif %}
+                                <!-- nom de l'organisation -->
+                                {% if exp_type == "pro" %}
+                                    <p class="mt-1 mb-8">{{ experience.organization }}</p>
+                                {% elif exp_type == "training" %}
+                                    <h4 class="h4_bold mt-6">{{ experience.organization }}</h4>
+                                {% endif %}
+                                <!-- name : diplôme dans ce cas pour une formation -->
+                                {% if exp_type == "training" %}
+                                    <p class="mt-1 mb-8">{{ experience.name }}</p>
+                                {% endif %}
+                                <!-- tags type de contrat -->
+                                {% if exp_type == "pro" %}
+                                    <p class="">{{ experience.get_experience_contract_type_display }} - {{ experience.get_experience_work_time_display }}</p>
+                                {% endif %}
+                                <!-- dates -->
+                                <p class="mt-2">
+                                    {% if experience.start_month and experience.start_year %}
+                                        {{ experience.start_month|month_name }} {{ experience.start_year }}
+                                    {% endif %}
+                                    -
+                                    {% if experience.is_current_position %}
+                                        Aujourd'hui
+                                    {% else %}
+                                        {% if experience.end_month and experience.end_year %}
+                                            {{ experience.end_month|month_name }} {{ experience.end_year }}
+                                        {% endif %}
+                                    {% endif %}
+                                </p>
+                                <!-- lieu -->
+                                {% if exp_type == "pro" %}
+                                    <p class="mt-2 mb-6">{{ experience.city }}, {{ experience.country }}</p>
+                                {% endif %}
+                                <!-- détails -->
+                                <pre class="p_interligne mt-2 mb-6">{{ experience.description }}</pre>
+                                <!-- lien -->
+                                <a class="" href="{{ experience.url }}" target="_blank" rel="noopener">{{ experience.url }}</a>
+                            </div>
+                            <div class="flex flex-col gap-y-6 items-end lg:gap-x-4 lg:items-center lg:flex-row lg:gap-y-0">
+                                <a href="#" class="hidden button_modify_desktop editExperienceBtn lg:flex" data-type="{{ exp_type }}" data-id="{{ experience.id }}" title="Modifier">
+                                    <i class="fas fa-pencil text-sm text-[var(--text_color_secondary)]"></i>Modifier</a>
+                                    <a href="#" class="flex button_modify_smartphone editExperienceBtn lg:hidden" data-type="{{ exp_type }}" data-id="{{ experience.id }}" title="Modifier">
+                                        <i class="fas fa-pencil text-sm text-[var(--text_color_secondary)]"></i>
+                                    </a>
+                                    <a href="#" class="button_xs_2 deleteExperienceBtn" data-id="{{ experience.id }}" title="Supprimer">
+                                        <i class="fas fa-trash-can text-sm text-[var(--text_color_tertiary)]"></i>
+                                    </a>
+                            </div>
+                        </div>
+                        {% empty %}
+                            <p class="no_results">Aucune {{ exp_label|lower }} enregistrée.</p>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
+
+        <!-- SECTION COMPETENCES + CAUSES ENGAGEMENTS + LOISIRS PASSIONS -->
+        {% for attribute_type, attribute_label, attribute_description in attribute_types %}
+            <section class="bg-[var(--bg_color_duodenary)] rounded-md shadow-lg py-6 px-4 mt-11 max-w-[994px] w-full mx-auto md:mt-20 md:px-32">
+                <!-- container titre de la section + button ajouter -->
+                <div class=" flex items-center justify-between pb-6">
+                    <h3 class="text-[var(--text_color_nonary)]">{{ attribute_label }}</h3>
+                    <button class="hidden addAttributeBtn button_xs_desktop lg:flex" data-type="{{ attribute_type }}"><i class="fas fa-plus text-sm text-[var(--text_color_tertiary)]"></i>Ajouter</button>
+                    <button class="addAttributeBtn button_xs_smartphone text-sm lg:hidden" data-type="{{ attribute_type }}"><i class="fas fa-plus text-sm text-[var(--text_color_tertiary)]"></i></button>
+                </div>
+                <!-- tags des competences + loisirs passions + causes engagements -->
+                <div id="attributesList-{{ attribute_type }}" class="flex flex-wrap items-center gap-5 border-t-2 border-[var(--border_color_quaternary)] w-full pt-6">
+                    {% for attribute in grouped_attributes|get_item:attribute_type %}
+                        <!-- nom du tag -->
+                        <div class="tag"
+                            data-{{ attribute_type }}-id="{{ attribute.id }}">
+                            <p class="">{{ attribute.name }}</p>
+                            <!-- button supprimer -->
+                            <button type="button"
+                                class="deleteAttributeBtn cursor-pointer hover:text-[var(--bg_color_hover_tertiary)] transition transform hover:scale-125 duration-75"
+                                data-id="{{ attribute.id }}"
+                                data-type="{{ attribute_type }}">
+                                <i class="fas fa-times text-[var(--text_color_septenary)] text-sm"></i>
+                            </button>
+                        </div>
+                        {% empty %}
+                            <p class="">Aucun {{ attribute_label|lower }} enregistré.</p>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
+
+        <!-- DRAWER CANDIDAT -->
+        <div id="basicInfoModal" class="modal z-20 modal bg-gray-900/50 shadow-2xl">
+            <div class="modal-box fixed right-0 top-0 min-h-screen bg-[var(--bg_color_nonary)] w-[325px] md:w-[650px] shadow-2xl">
+                <div class="flex flex-col items-center justify-center mt-16">
+                    <!-- titre drawer candidat -->
+                    <h3 class="text-[var(--text_color_nonary)] text-center w-56 md:w-full">Modifier les informations de base</h3>
+                    <!-- croix pour fermer le drawer -->
+                    <i id="closeBasicInfoModal" class="fa-solid fa-xmark text-[var(--text_color_secondary)] text-xl absolute right-0 top-6 mr-8 cursor-pointer transition transform hover:scale-125 duration-75"></i>
+                    <form id="basicInfoForm" method="post" class="flex flex-col items-center mt-5">
+                        {% csrf_token %}
+                        <!-- Génération dynamique des champs label + input -->
+                        {% for field in basic_info_form %}
+                            <div class="flex flex-col mt-5">
+                                <label for="{{ field.id_for_label }}">
+                                    {{ field.label }}
+                                    {% if field.field.required %}<span class="text-[var(--text_color_septenary)]">*</span>{% endif %}
+                                </label>
+                                {% if field.name == 'description' %}
+                                    <textarea class="w-[280px] h-64 pl-3 mt-0.5 text-sm font-roboto border-[var(--border_color_primary)] rounded md:w-[590px] outline-none p_interligne" placeholder="Quelques mots sur vous : par exemple votre parcours, vos aspirations…" id="{{ field.id_for_label }}" name="{{ field.name }}" rows="3"
+                                        {% for attr, val in field.field.widget.attrs.items %}
+                                            {{ attr }}="{{ val }}"
+                                        {% endfor %}
+                                    >{{ field.value|default_if_none:'' }}
+                                    </textarea>
+                                {% else %}
+                                    <input type="text"
+                                        id="{{ field.id_for_label }}"
+                                        name="{{ field.name }}"
+                                        value="{{ field.value|default_if_none:'' }}"
+                                        {% if field.field.required %}required{% endif %}
+                                        {% for attr, val in field.field.widget.attrs.items %}
+                                            {{ attr }}="{{ val }}"
+                                        {% endfor %}
+                                    >
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <!-- container buttons -->
+                        <div class="buttons-container flex flex-col items-center gap-x-18 md:flex-row md:mt-8">
+                            <button id="cancelBasicInfo" class="btn mt-4 button_cancel_drawer md:mt-0">Annuler</button>
+                            <button type="submit" class="btn mt-8 button_save_drawer md:mt-0">Enregistrer</button>
+                        </div>
+                    </form>
+                    <div class="mt-4 text-center">
+                        <p id="errorMessages" class="text-[var(--text_color_septenary)]"></p>
+                        <p id="successMessages" class="text-[var(--text_color_octanary)]"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DRAWER VOS INFORMATIONS -->
+        <div id="candidateInfoModal" class="modal z-20 modal bg-gray-900/50 shadow-2xl">
+            <div class="modal-box absolute right-0 top-0 min-h-screen bg-[var(--bg_color_nonary)] w-[325px] md:w-[650px] shadow-2xl">
+                <div class="flex flex-col items-center justify-center mt-16">
+                    <!-- titre drawer candidat -->
+                    <h3 class="text-[var(--text_color_nonary)] text-center w-60 md:w-full">Modifier les informations du candidat</h3>
+                    <!-- croix pour fermer le drawer -->
+                    <i id="closeCandidateInfoModal" class="fa-solid fa-xmark text-[var(--text_color_secondary)] text-xl absolute right-0 top-6 mr-8 cursor-pointer transition transform hover:scale-125 duration-75"></i>
+                    <form id="candidateInfoForm" method="post" class="flex flex-col items-center mt-5">
+                        {% csrf_token %}
+                        <!-- Génération dynamique des champs label + inputs -->
+                        {% for field in candidate_info_form %}
+                            <div class="flex flex-col mt-5">
+                                <label for="{{ field.id_for_label }}">
+                                    {{ field.label }}
+                                    {% if field.field.required %}<span class="text-[var(--text_color_septenary)]">*</span>{% endif %}
+                                </label>
+                                {% if field.name == 'special_needs_comments' %}
+                                    <textarea class="w-[280px] h-64 pl-3 mt-0.5 text-sm font-roboto border-[var(--border_color_primary)] rounded md:w-[590px] outline-none p_interligne" placeholder="Par exemple, des aménagements d’horaires, un bureau séparé plutôt qu’un open space, des outils d’aide à l'écriture, le port d’un casque anti-bruit, limiter les temps de réunion, éviter la caméra en visio…"
+                                        id="{{ field.id_for_label }}"
+                                        name="{{ field.name }}"
+                                        rows="3"
+                                        {% for attr, val in field.field.widget.attrs.items %}
+                                            {{ attr }}="{{ val }}"
+                                        {% endfor %}
+                                    >{{ field.value|default_if_none:'' }}
+                                    </textarea>
+                                {% elif field.name == 'mobilities' %}
+                                    <select id="{{ field.id_for_label }}"
+                                        name="{{ field.name }}"
+                                        multiple
+                                        {% for attr, val in field.field.widget.attrs.items %}
+                                            {{ attr }}="{{ val }}"
+                                        {% endfor %}
+                                    >
+                                        {% for value, label in field.field.choices %}
+                                            <option value="{{ value }}"
+                                            {% if value|stringformat:"s" in field.value|default_if_none:"" %}selected{% endif %}>
+                                                {{ label }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                {% elif field.field.widget.input_type == 'select' %}
+                                    <select id="{{ field.id_for_label }}"
+                                        name="{{ field.name }}"
+                                        {% if field.field.required %}required{% endif %}
+                                        {% for attr, val in field.field.widget.attrs.items %}
+                                            {{ attr }}="{{ val }}"
+                                        {% endfor %}
+                                    >
+                                        {% for value, label in field.field.choices %}
+                                            <option value="{{ value }}"
+                                                {% if value == field.value|stringformat:"s" %}selected{% endif %}
+                                            >
+                                                {{ label }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                {% else %}
+                                    <input type="text"
+                                        id="{{ field.id_for_label }}"
+                                        name="{{ field.name }}"
+                                        value="{{ field.value|default_if_none:'' }}"
+                                        {% if field.field.required %}required{% endif %}
+                                        {% for attr, val in field.field.widget.attrs.items %}
+                                            {{ attr }}="{{ val }}"
+                                        {% endfor %}
+                                    >
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <!-- container buttons -->
+                        <div class="buttons-container flex flex-col items-center gap-x-18 md:flex-row md:mt-8">
+                            <button id="cancelCandidateInfo" class="btn mt-4 button_cancel_drawer md:mt-0">Annuler</button>
+                            <button type="submit" class="btn mt-8 button_save_drawer md:mt-0">Enregistrer</button>
+                        </div>
+                    </form>
+                    <div class="mt-4 text-center">
+                        <p id="errorMessages" class="text-[var(--text_color_septenary)]"></p>
+                        <p id="successMessages" class="text-[var(--text_color_octanary)]"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DRAWER EXPERIENCES PRO + ACTIVITES PERSO + FORMATIONS -->
+        <div id="experienceModal" class="modal z-20 modal bg-gray-900/50 shadow-2xl">
+            <div class="modal-box absolute right-0 top-0 min-h-screen bg-[var(--bg_color_nonary)] w-[325px] md:w-[650px] shadow-2xl">
+                <div class="flex flex-col items-center justify-center mt-16">
+                    <!-- titre drawer candidat -->
+                    <h3 class="text-[var(--text_color_nonary)] text-center w-56 md:w-full" id="experienceModalTitle">Ajouter une</h3>
+                    <!-- croix pour fermer le drawer -->
+                    <i id="closeExperienceModal" class="fa-solid fa-xmark text-[var(--text_color_secondary)] text-xl absolute right-0 top-6 mr-8 cursor-pointer transition transform hover:scale-125 duration-75"></i>
+                    <form class="mt-5" id="experienceForm" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="experienceId" name="experience_id" value="">
+                        <input type="hidden" id="experienceType" name="experience_type" value="">
+                        <!-- container label + input -->
+                        <div class="grid place-items-center gap-x-11 grid-cols-1 md:grid-cols-2">
+                            {% for field in experience_form %}
+                                {% if field.name not in 'description' %}
+                                    {% if field.name == 'name' %}
+                                        <div id="reverse" class="md:col-span-2 flex flex-col md:flex-row gap-x-11">
+                                    {% endif %}
+                                    {% if field.name == 'start_month' %}
+                                        <div id="placer" style="display:none;"></div>
+                                    {% endif %}
+                                    {% if field.name != "start_year" and field.name != "end_year" %}
+                                        <div class="w-72 ml-3.5 flex flex-col justify-center mt-5 field-wrapper"
+                                             id="wrapper_{{ field.id_for_label }}"
+                                        >
+                                    {% endif %}
+                                    {% if field.name == 'start_month' %}
+                                        <div class="flex items-center gap-x-1">
+                                            <label>Date de début</label>
+                                            <span class="text-[var(--text_color_septenary)] required-asterisk"
+                                            id="asterisk_{{ field.id_for_label }}"
+                                            {% if not field.field.required %}style="display:none;"{% endif %}>
+                                                *
+                                            </span>
+                                        </div>
+                                        <div class="flex flex-row">
+                                            {{ field }}
+                                    {% elif field.name == 'end_month' %}
+                                        <div class="flex items-center gap-x-1">
+                                            <label>Date de fin</label>
+                                        </div>
+                                        <div class="flex flex-row">
+                                            {{ field }}
+                                    {% elif field.name == "start_year" or field.name == "end_year" %}
+                                            {{ field }}
+                                        </div>
+                                    {% else %}
+                                        <div class="w-85 flex items-center gap-x-1 ">
+                                            <label for="{{ field.id_for_label }}" {% if field.name in 'name' %} id="nameLabel" {% elif field.name in 'organization'%} id="organisationLabel" {% elif field.name in 'is_current_position'%} id="currentLabel" {% endif %}>
+                                                {{ field.label }}
+                                            </label>
+                                            <span class="text-[var(--text_color_septenary)] required-asterisk"
+                                                id="asterisk_{{ field.id_for_label }}"
+                                                {% if not field.field.required %}style="display:none;"{% endif %}>
+                                            *
+                                            </span>
+                                        </div>
+                                        {{ field }}
+                                    {% endif %}
+                                    {% if field.errors %}
+                                        <div class="text-[var(--text_color_septenary)]">{{ field.errors }}</div>
+                                    {% endif %}
+                                    {% if field.name != "start_month" and field.name != "end_month" %}
+                                        </div>
+                                    {% endif %}
+                                    {% if field.name == 'organization' %}
+                                        </div>
+                                    {% endif %}
+                                {% else %}
+                                    <div class="ml-12 flex flex-col justify-center mt-5 field-wrapper w-full md:ml-8" id="wrapper_id_description">
+                                        <label for="id_description">
+                                            {{ field.label }}
+                                            {% if experience_form.description.field.required %}<span class="text-[var(--text_color_septenary)]">*</span>{% endif %}
+                                        </label>
+                                        <textarea class="w-[286px] h-60 pl-3 mt-0.5 text-sm font-roboto border-[var(--border_color_primary)] rounded outline-none md:w-[620px] p_interligne" placeholder="Par exemple : vos missions, vos réalisations, plus d’informations sur l’entreprise..." id="id_description" name="description" rows="3">{{ field.value|default_if_none:'' }}</textarea>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <!-- container buttons -->
+                        <div class="buttons-container flex flex-col items-center mx-auto justify-center md:flex-row md:space-x-18 md:px-4 md:mt-8">
+                            <button id="cancelExperience" class="btn mt-4 button_cancel_drawer md:mt-0">Annuler</button>
+                            <button type="submit" id="submitExperience" class="btn mt-8 button_save_drawer md:mt-0">Ajouter</button>
+                        </div>
+                    </form>
+                    <div class="mt-4 text-center">
+                        <p id="errorMessages" class="text-[var(--text_color_septenary)]"></p>
+                        <p id="successMessages" class="text-[var(--text_color_octanary)]"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DRAWER COMPETENCES + LOISIRS, PASSIONS + CAUSES, ENGAGEMENTS -->
+        <div id="attributeModal" class="modal z-20 modal bg-gray-900/50 shadow-2xl">
+            <div class="modal-box fixed right-0 top-0 min-h-screen bg-[var(--bg_color_nonary)] w-[325px] md:w-[650px] shadow-2xl">
+                <div class="flex flex-col items-center justify-center mt-16">
+                    <!-- titre drawer candidat -->
+                    <h3 class="text-[var(--text_color_nonary)] text-center" id="attributeModalTitle">Ajouter un•e</h3>
+                    <!-- croix pour fermer le drawer -->
+                    <i id="closeAttributeModal" class="fa-solid fa-xmark text-[var(--text_color_secondary)] text-xl absolute right-0 top-6 mr-8 cursor-pointer transition transform hover:scale-125 duration-75"></i>
+                    <form id="attributeForm" method="post" class="flex flex-col items-center mt-5">
+                        {% csrf_token %}
+                        <input type="hidden" id="attributeId" name="attribute_id" value="">
+                        <input type="hidden" id="attributeType" name="attribute_type" value="">
+                        <!-- container label + input -->
+                        {% for field in attribute_form %}
+                            <div class="form-control flex flex-col mt-5">
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="text-[var(--text_color_septenary)]">
+                                        {{ field.errors|join:", " }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                         <!-- container buttons -->
+                        <div class="flex flex-col items-center gap-x-18 md:flex-row md:mt-8">
+                            <button type="button" id="cancelAttribute" class="btn mt-4 button_cancel_drawer md:mt-0">Annuler</button>
+                            <button type="submit" id="submitAttribute" class="btn mt-8 button_save_drawer md:mt-0">Ajouter</button>
+                        </div>
+                    </form>
+                    <div class="mt-4 text-center">
+                        <p id="errorMessages" class="text-[var(--text_color_septenary)]"></p>
+                        <p id="successMessages" class="text-[var(--text_color_octanary)]"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'neuroa_app/js/profile.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.default_profile_url = "{% static '/images/default_profile.png' %}";
+            const EXPERIENCE_TYPE_INFOS = {{ experience_type_infos_json|safe }};
+            init(EXPERIENCE_TYPE_INFOS);
+        });
+    </script>
+{% endblock %}

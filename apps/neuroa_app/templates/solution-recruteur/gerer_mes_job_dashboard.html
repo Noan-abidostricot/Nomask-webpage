@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% block scripts %}
+{% endblock %}
+<main class="flex flex-col items-center min-h-screen mt-[57px] ml-[15.1875rem] max-sm:ml-0">
+
+  <div class="flex flex-col md:flex-row w-full max-w-[900px] items-center justify-center text-center md:text-left px-4 sm:px-[50px] mt-10 md:mt-0">
+      <div class="w-full max-w-[341px] flex-shrink-0 mb-4 md:mb-0 mr-0 md:mr-[29px]">
+        <h1 class="sm:text-[28px] md:text-3xl lg:text-4xl mt-[-120px] font-manrope font-bold">
+          <span class="font-bold">Gérez</span> les <br>
+          informations du <span class="font-bold">job</span>
+        </h1>
+      </div>
+      <img src="{% static 'neuroa_app/img/manage-job.svg' %}" class="w-full max-w-[380px]  md:mt-[-50px]" alt="Illustration">
+  </div>
+
+  <!-- Tableau des offres d'emploi responsive avec tri sur la date de publication et le statut -->
+  <div class="mb-8 w-full overflow-x-auto">
+    <table class="min-w-[700px] w-full text-left border-separate border-spacing-x-[5px] mt-8" id="jobsTable">
+      <thead>
+        <tr class="font-[Manrope] text-[20px] text-[#27035F]">
+          <th class="font-normal">
+            <div class="flex items-center min-w-[180px]">Intitulé du job</div>
+          </th>
+          <th class="font-normal" style="width:234px;">
+            <button type="button" class="flex items-center gap-1 cursor-pointer select-none group bg-transparent border-0" onclick="sortTableByDate()" title="Trier par date">
+              Date de publication
+              <svg id="sortIconDate" class="w-4 h-4 transition-transform duration-200" fill="#27035F" stroke="#4B2990" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </th>
+          <th class="font-normal" style="width:234px;">
+            <button type="button" class="flex items-center gap-1 cursor-pointer select-none group bg-transparent border-0" onclick="sortTableByStatus()" title="Trier par statut">
+              Statut
+              <svg id="sortIconStatus" class="w-4 h-4 transition-transform duration-200" fill="#27035F" stroke="#4B2990" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </th>
+          <th class="font-normal min-w-[100px]"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Exemple d'offres, à remplacer par une boucle Django -->
+        <tr class="border-b last:border-0 hover:bg-gray-50">
+          <td class="py-4 px-2 sm:px-6">Développeur Front-End</td>
+          <td class="py-4 px-2 sm:px-6">05/08/2025</td>
+          <td class="py-4 px-2 sm:px-6">
+            <div class="relative inline-block w-32">
+              <select class="appearance-none w-full bg-white border border-gray-300 rounded px-3 py-1 pr-8 focus:outline-none focus:ring-2 focus:ring-[#4B2990] text-sm">
+                <option>Ouvert</option>
+                <option>Fermé</option>
+                <option>Pourvu</option>
+              </select>
+              <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2">
+                <svg class="w-4 h-4 text-[#4B2990]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </div>
+          </td>
+          <td class="py-4 px-2 sm:px-6 flex gap-2">
+            <button type="button" class="p-2 rounded-full bg-[#4B2990] text-white hover:bg-[#6C41C6]" title="Editer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M15.232 5.232l3.536 3.536M9 13l6-6 3 3-6 6M6 18h6" />
+              </svg>
+            </button>
+            <button type="button" class="p-2 rounded-full bg-[#F24C4C] text-white hover:bg-red-700" title="Supprimer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </td>
+        </tr>
+        <tr class="border-b last:border-0 hover:bg-gray-50">
+          <td class="py-4 px-2 sm:px-6">Développeur Back-End</td>
+          <td class="py-4 px-2 sm:px-6">15/05/2024</td>
+          <td class="py-4 px-2 sm:px-6">
+            <div class="relative inline-block w-32">
+              <select class="appearance-none w-full bg-white border border-gray-300 rounded px-3 py-1 pr-8 focus:outline-none focus:ring-2 focus:ring-[#4B2990] text-sm">
+                <option>Ouvert</option>
+                <option selected>Fermé</option>
+                <option>Pourvu</option>
+              </select>
+              <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2">
+                <svg class="w-4 h-4 text-[#4B2990]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </div>
+          </td>
+          <td class="py-4 px-2 sm:px-6 flex gap-2">
+            <button type="button" class="p-2 rounded-full bg-[#4B2990] text-white hover:bg-[#6C41C6]" title="Editer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M15.232 5.232l3.536 3.536M9 13l6-6 3 3-6 6M6 18h6" />
+              </svg>
+            </button>
+            <button type="button" class="p-2 rounded-full bg-[#F24C4C] text-white hover:bg-red-700" title="Supprimer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </td>
+        </tr>
+        <tr class="border-b last:border-0 hover:bg-gray-50">
+          <td class="py-4 px-2 sm:px-6">Product Owner</td>
+          <td class="py-4 px-2 sm:px-6">25/12/2024</td>
+          <td class="py-4 px-2 sm:px-6">
+            <div class="relative inline-block w-32">
+              <select class="appearance-none w-full bg-white border border-gray-300 rounded px-3 py-1 pr-8 focus:outline-none focus:ring-2 focus:ring-[#4B2990] text-sm">
+                <option>Ouvert</option>
+                <option>Fermé</option>
+                <option selected>Pourvu</option>
+              </select>
+              <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2">
+                <svg class="w-4 h-4 text-[#4B2990]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </div>
+          </td>
+          <td class="py-4 px-2 sm:px-6 flex gap-2">
+            <button type="button" class="p-2 rounded-full bg-[#4B2990] text-white hover:bg-[#6C41C6]" title="Editer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M15.232 5.232l3.536 3.536M9 13l6-6 3 3-6 6M6 18h6" />
+              </svg>
+            </button>
+            <button type="button" class="p-2 rounded-full bg-[#F24C4C] text-white hover:bg-red-700" title="Supprimer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </td>
+        </tr>
+        <tr class="border-b last:border-0 hover:bg-gray-50">
+          <td class="py-4 px-2 sm:px-6">UI Designer</td>
+          <td class="py-4 px-2 sm:px-6">01/01/2025</td>
+          <td class="py-4 px-2 sm:px-6">
+            <div class="relative inline-block w-32">
+              <select class="appearance-none w-full bg-white border border-gray-300 rounded px-3 py-1 pr-8 focus:outline-none focus:ring-2 focus:ring-[#4B2990] text-sm">
+                <option>Ouvert</option>
+                <option>Fermé</option>
+                <option selected>Pourvu</option>
+              </select>
+              <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2">
+                <svg class="w-4 h-4 text-[#4B2990]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </div>
+          </td>
+          <td class="py-4 px-2 sm:px-6 flex gap-2">
+            <button type="button" class="p-2 rounded-full bg-[#4B2990] text-white hover:bg-[#6C41C6]" title="Editer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M15.232 5.232l3.536 3.536M9 13l6-6 3 3-6 6M6 18h6" />
+              </svg>
+            </button>
+            <button type="button" class="p-2 rounded-full bg-[#F24C4C] text-white hover:bg-red-700" title="Supprimer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<footer class="w-full flex flex-col pb-2">
+  <hr class="h-2.5 w-full border-[#6C757D80] mb-1">
+  <div class="flex flex-col lg:flex-row justify-center items-center gap-4 px-4 py-2 ml-[15.1875rem] max-sm:ml-0">
+    <section class="font-roboto text-[12px] text-[#27035F] flex flex-col sm:flex-row gap-x-[15px] gap-y-1 text-center">
+      <a href="#">Contactez nous</a>
+      <a href="#">FAQ</a>
+      <a href="#">Ressources</a>
+      <a href="#">Tarifs</a>
+    </section>
+    <p class="font-roboto text-[#000000] hidden lg:block">-</p>
+    <section class="font-roboto text-[12px] text-[#27035F] flex flex-col sm:flex-row gap-x-[15px] gap-y-1 text-center">
+      <a href="#">CGU</a>
+      <a href="#">Mentions Légales</a>
+      <a href="#">Politiques Cookies</a>
+    </section>
+    <section class="flex gap-[14px] mt-2 lg:mt-0">
+      <a href="https://fr.linkedin.com"> <img src="{% static 'neuroa_app/img/linkedin.png' %}" alt="LinkedIn"></a>
+      <a href="https://www.youtube.com/"> <img src="{% static 'neuroa_app/img/youtube.png' %}" alt="YouTube"></a>
+      <a href="https://fr-fr.facebook.com"> <img src="{% static 'neuroa_app/img/facebook.png' %}" alt="Facebook"></a>
+      <a href="https://www.instagram.com/"> <img src="{% static 'neuroa_app/img/instagram.png' %}" alt="Instagram"></a>
+    </section>
+  </div>
+</footer>
+
+<script>
+let ascDate = true; // ordre croissant/décroissant date
+let ascStatus = true; // ordre croissant/décroissant statut
+
+function parseDate(frDate) {
+  // Convertit 'JJ/MM/AAAA' en objet Date
+  let [day, month, year] = frDate.split('/');
+  return new Date(year, month - 1, day);
+}
+
+function sortTableByDate() {
+  const table = document.getElementById('jobsTable').getElementsByTagName('tbody')[0];
+  const rows = Array.from(table.rows);
+
+  rows.sort((a, b) => {
+    const dateA = parseDate(a.cells[1].innerText.trim());
+    const dateB = parseDate(b.cells[1].innerText.trim());
+    return ascDate ? dateA - dateB : dateB - dateA;
+  });
+
+  rows.forEach(row => table.appendChild(row));
+  ascDate = !ascDate;
+
+  document.getElementById('sortIconDate').style.transform = ascDate ? "rotate(0deg)" : "rotate(180deg)";
+  // Reset status icon (optional)
+  document.getElementById('sortIconStatus').style.transform = "rotate(0deg)";
+}
+
+function sortTableByStatus() {
+  const table = document.getElementById('jobsTable').getElementsByTagName('tbody')[0];
+  const rows = Array.from(table.rows);
+
+  rows.sort((a, b) => {
+    const statusA = a.cells[2].querySelector('select').value.toLowerCase();
+    const statusB = b.cells[2].querySelector('select').value.toLowerCase();
+    if (statusA < statusB) return ascStatus ? -1 : 1;
+    if (statusA > statusB) return ascStatus ? 1 : -1;
+    return 0;
+  });
+
+  rows.forEach(row => table.appendChild(row));
+  ascStatus = !ascStatus;
+
+  document.getElementById('sortIconStatus').style.transform = ascStatus ? "rotate(0deg)" : "rotate(180deg)";
+  // Reset date icon (optional)
+  document.getElementById('sortIconDate').style.transform = "rotate(0deg)";
+}
+</script>
+
+{% endblock %}

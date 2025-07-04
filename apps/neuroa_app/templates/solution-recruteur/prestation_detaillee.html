@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="app" class="min-h-screen flex flex-col bg-[var(--bg_color_nonary)]">
+    <!-- HERO BANNER -->
+    <section class="mt-24 lg:mt-30 px-9">
+        <h1 class="text-center">Prestation N1</h1>
+        <div class="mt-5 flex items-center justify-center gap-x-12 flex-col lg:flex-row lg:mt-8">
+            <img class="max-w-[450px] w-full h-full rounded-md shadow-lg lg:max-w-[500px]" src="{% static 'neuroa_app/img/image-card-presentation.png' %}" alt="Image de la formation">
+            <!-- container titre + prix + text + button -->
+            <div class="mt-8 max-w-[545px] flex flex-col items-center lg:items-start lg:mt-0">
+                <h2>Nos moventem gentes et incessunt.</h2>
+                <h4 class="h4_bold border border-[var(--border_color_primary)] rounded-full w-fit py-1 px-3 mt-4">99€</h4>
+                <p class="p_interligne mt-4">Coactique aliquotiens nostri pedites ad eos persequendos scandere clivos sublimes etiam si lapsantibus plantis fruticeta prensando vel dumos ad vertices venerint summos, inter arta tamen et invia nullas acies explicare permissi nec firmare nisu valido gressus: hoste discursatore rupium abscisa volvente, ruinis ponderum inmanium consternuntur, aut ex necessitate ultima fortiter dimicante, superati periculose per prona discedunt.<br><br>Cognitis enim pilatorum caesorumque funeribus nemo deinde ad has stationes appulit navem, sed ut Scironis praerupta letalia declinantes litoribus Cypriis contigui navigabant, quae Isauriae scopulis sunt controversa.<br><br>Quaestione igitur per multiplices dilatata fortunas cum ambigerentur quaedam, non nulla levius actitata constaret, post multorum clades Apollinares ambo pater et filius in exilium acti cum ad locum Crateras nomine pervenissent, villam scilicet suam quae ab Antiochia vicensimo et quarto disiungitur lapide, ut mandatum est, fractis cruribus occiduntur.
+                </p>
+                <button class="button_large mx-auto mt-5">Acheter la formation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION NOS AUTRES PRESTATIONS -->
+<section class="bg-[var(--bg_color_quinary)] mt-12 px-9 py-9 flex flex-col items-center justify-center">
+    <h2>Nos autres prestations</h2>
+    <!-- conteneur icons + cards -->
+    <div class="flex items-center justify-center mt-10 w-full">  
+        <!-- icon left -->
+        <span class="hidden md:flex">
+            <i class="fa-solid fa-chevron-left text-lg text-[var(--text_color_secondary)] cursor-pointer hover:scale-125 duration-75"></i> 
+        </span>
+        <!-- scrollable container -->
+        <div class="overflow-x-auto scrollbar-hide pb-5 mx-4">
+            <!-- container cards -->
+            <div class="flex items-start gap-x-8 md:gap-x-12 flex-nowrap min-w-fit">
+                <!-- card 1 -->
+                <div class="shrink-0 cursor-pointer hover:bg-[var(--bg_color_duodenary)] duration-200 bg-[var(--bg_color_octonary)] flex flex-col items-center max-w-[250px] rounded-md shadow-lg">
+                    <img class="w-full h-full rounded-t-md shadow-lg" src="{% static 'neuroa_app/img/image-card-presentation.png' %}" alt="Image de la formation">
+                    <div class="px-5 flex flex-col items-center mt-4 mb-4">
+                        <h4 class="h4_bold">Lorem ipsum</h4>
+                        <h4 class="h4_bold border border-[var(--border_color_primary)] rounded-full w-fit py-1 px-3 mt-2">99€</h4>
+                        <p class="p_interligne mt-2">Quare hoc quidem praeceptum...</p>
+                        <button class="border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] cursor-pointer rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center mt-3.5">Voir la prestation</button>
+                    </div>
+                </div>
+                <!-- card 2 -->
+                <div class="shrink-0 cursor-pointer hover:bg-[var(--bg_color_duodenary)] duration-200 bg-[var(--bg_color_octonary)] flex flex-col items-center max-w-[250px] rounded-md shadow-lg">
+                    <img class="w-full h-full rounded-t-md shadow-lg" src="{% static 'neuroa_app/img/image-card-presentation.png' %}" alt="Image de la formation">
+                    <div class="px-5 flex flex-col items-center mt-4 mb-4">
+                        <h4 class="h4_bold">Lorem ipsum</h4>
+                        <h4 class="h4_bold border border-[var(--border_color_primary)] rounded-full w-fit py-1 px-3 mt-2">99€</h4>
+                        <p class="p_interligne mt-2">Quare hoc quidem praeceptum...</p>
+                        <button class="border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] cursor-pointer rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center mt-3.5">Voir la prestation</button>
+                    </div>
+                </div>
+                <!-- card 3 -->
+                <div class="shrink-0 cursor-pointer hover:bg-[var(--bg_color_duodenary)] duration-200 bg-[var(--bg_color_octonary)] flex flex-col items-center max-w-[250px] rounded-md shadow-lg">
+                    <img class="w-full h-full rounded-t-md shadow-lg" src="{% static 'neuroa_app/img/image-card-presentation.png' %}" alt="Image de la formation">
+                    <div class="px-5 flex flex-col items-center mt-4 mb-4">
+                        <h4 class="h4_bold">Lorem ipsum</h4>
+                        <h4 class="h4_bold border border-[var(--border_color_primary)] rounded-full w-fit py-1 px-3 mt-2">99€</h4>
+                        <p class="p_interligne mt-2">Quare hoc quidem praeceptum...</p>
+                        <button class="border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] cursor-pointer rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center mt-3.5">Voir la prestation</button>
+                    </div>
+                </div>
+                <!-- card 4 -->
+                <div class="shrink-0 cursor-pointer hover:bg-[var(--bg_color_duodenary)] duration-200 bg-[var(--bg_color_octonary)] flex flex-col items-center max-w-[250px] rounded-md shadow-lg">
+                    <img class="w-full h-full rounded-t-md shadow-lg" src="{% static 'neuroa_app/img/image-card-presentation.png' %}" alt="Image de la formation">
+                    <div class="px-5 flex flex-col items-center mt-4 mb-4">
+                        <h4 class="h4_bold">Lorem ipsum</h4>
+                        <h4 class="h4_bold border border-[var(--border_color_primary)] rounded-full w-fit py-1 px-3 mt-2">99€</h4>
+                        <p class="p_interligne mt-2">Quare hoc quidem praeceptum...</p>
+                        <button class="border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] cursor-pointer rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center mt-3.5">Voir la prestation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- icon right -->
+        <span class="hidden md:flex">
+            <i class="fa-solid fa-chevron-right text-lg text-[var(--text_color_secondary)] cursor-pointer hover:scale-125 duration-75"></i>
+        </span>
+    </div>
+</section>
+
+
+</div>
+{% endblock %}

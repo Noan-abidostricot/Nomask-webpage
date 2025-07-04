@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="app" class="bg-[var(--bg_color_nonary)]">
+
+    <!-- SECTION HERO BANNER -->
+    <section class="flex flex-col items-center pt-24 lg:pt-28">
+        <h1 class="">Contacter <span class="font-bold">NoMask</span></h1>
+        <img class="w-[340px] h-full lg:w-[500px]" src="{% static "neuroa_app/img/image-section-contact.svg" %}" alt="illustration de personnes qui répondent à des appels">
+    </section>
+
+    <!-- SECTION CONTACT -->
+     <section class="">
+        <!-- container bureau + telephone + carte + reseaux sociaux + formulaire de contact -->
+        <div class="flex flex-col-reverse items-center justify-center flex-wrap xl:bg-[var(--bg_color_quinary)] xl:py-12 xl:flex-row xl:gap-x-20">
+            <!-- container bureau + telephone + carte + reseaux sociaux -->
+            <div class="flex flex-col items-center py-6 xl:py-0">
+                <!-- container bureau + telephone -->
+                <div class="flex flex-col gap-y-7 sm:gap-y-0 sm:flex-row sm:items-center sm:gap-x-11">
+                    <!-- container bureau -->
+                    <div>
+                        <div class="flex items-center gap-x-1.5">
+                            <i class="fa-solid fa-location-dot text-xl text-[var(--text_color_secondary)]"></i>
+                            <h4 class="h4_bold">Bureau</h4>
+                        </div>
+                        <p class="mt-1.5 ml-6">Venez dire bonjour au siège social.</p>
+                        <p class="mt-0.5 ml-6">4 Av. du Château Hébert, 35800 Dinard</p>
+                    </div>
+                    <!-- container telephone -->
+                    <div>
+                        <div class="flex items-center gap-x-1.5">
+                            <i class="fa-solid fa-phone text-xl text-[var(--text_color_secondary)]"></i>
+                            <h4 class="h4_bold">Téléphone</h4>
+                        </div>
+                        <p class="mt-1.5 ml-8">Du lundi au vendredi, de 8h à 17h</p>
+                        <p class="mt-0.5 ml-8">06 70 80 90 40</p>
+                    </div>
+                </div>  
+                <!-- container carte map -->
+                <iframe class="w-full max-w-[506px] h-[225px] md:h-[300px] rounded shadow-2xl mt-6 transition transform hover:scale-103 duration-200" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2636.489809076475!2d-2.0779592225004544!3d48.63874431613732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480e80a24963d133%3A0x45f54d27b35b9bff!2sInstitut%20Marie%20Th%C3%A9r%C3%A8se%20Solacroup!5e0!3m2!1sfr!2sfr!4v1747317513179!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                
+                <!-- container logos reseaux sociaux -->
+                <div class="flex flex-col items-center mt-12">
+                    <img class="w-[156px] h-full lg:w-[156px]" src="{% static "neuroa_app/img/logo_ligne_marine_h40.png" %}" alt="illustration d'une personne qui bouqine">
+                    <div class="flex items-center gap-x-4 mt-4">
+                        <a href="#" class="h-9 w-9 hover:scale-125 duration-100"><img src="{% static "neuroa_app/img/logo-linkedin.png" %}" alt="NoMask"></a>
+                        <a href="#" class="h-9 w-9 hover:scale-125 duration-100"><img src="{% static "neuroa_app/img/logo-youtube.png" %}" alt="NoMask"></a>
+                        <a href="#" class="h-9 w-9 hover:scale-125 duration-100"><img src="{% static "neuroa_app/img/logo-facebook.png" %}" alt="NoMask"></a>
+                        <a href="#" class="h-9 w-9 hover:scale-125 duration-100"><img src="{% static "neuroa_app/img/logo-instagram.png" %}" alt="NoMask"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- container form -->
+            <div class="w-screen bg-[var(--bg_color_quinary)] border-b-2 border-[var(--border_color_quaternary)] py-7 xl:w-fit xl:border-b-0 xl:sm:py-0">
+                <form action="" class="bg-[var(--bg_color_octonary)] w-fit flex flex-col items-center gap-y-3.5 py-6 px-7 shadow-2xl rounded-md mx-auto">
+                    <span class="border border-[var(--border_color_primary)] w-fit rounded pl-3 flex items-center justify-center">
+                        <i class="fa-solid fa-building-user text-sm text-[var(--text_color_quaternary)] pl-1"></i>
+                        <select id="typeUtilisateur" class="input_form text-[var(--text_color_quaternary)]">
+                            <option value="" disabled selected hidden>Sélectionnez ce que vous êtes...</option>
+                            <option value="entreprise">Une entreprise</option>
+                            <option value="candidat">Un candidat</option>
+                        </select>
+                    </span>
+                    <span id="nomEntreprise" class="hidden border border-[var(--border_color_primary)] w-fit rounded pl-3 flex items-center justify-center">
+                        <i class="fa-solid fa-building text-sm text-[var(--text_color_quaternary)] pl-1"></i>
+                        <input class="input_form" type="text" placeholder="Saisissez le nom de l'entreprise...">
+                    </span>
+                    <span class="border border-[var(--border_color_primary)] w-fit rounded pl-3 flex items-center justify-center">
+                        <i class="fa-solid fa-user text-sm text-[var(--text_color_quaternary)] pl-1"></i>
+                        <input class="input_form" type="text" name="" id="" placeholder="Saisissez votre nom...">
+                    </span>
+                    <span class="border border-[var(--border_color_primary)] w-fit rounded pl-3 flex items-center justify-center">
+                        <i class="fa-solid fa-user text-sm text-[var(--text_color_quaternary)] pl-1"></i>
+                        <input class="input_form" type="text" name="" id="" placeholder="Saisissez votre prénom...">
+                    </span>
+                    <span class="border border-[var(--border_color_primary)] w-fit rounded pl-3 flex items-center justify-center">
+                        <i class="fa-solid fa-envelope text-sm text-[var(--text_color_quaternary)] pl-1"></i>
+                        <input class="input_form" type="text" name="" id="" placeholder="Saisissez votre adresse mail...">
+                    </span>
+                    <span class="border border-[var(--border_color_primary)] w-fit rounded pl-3 flex items-center justify-center">
+                        <i class="fa-solid fa-circle-question text-sm text-[var(--text_color_quaternary)] pl-1"></i>
+                        <select id="typeDemande" class="input_form text-[var(--text_color_quaternary)]">
+                        <option value="" disabled selected hidden>Sélectionnez votre demande...</option>
+                        </select>
+                    </span>
+                    <span class="border border-[var(--border_color_primary)] w-fit rounded p-4 flex">
+                        <i class="fas fa-pencil text-sm text-[var(--text_color_quaternary)] pl-1"></i>
+                        <textarea class="w-[200px] h-[240px] pl-3 text-sm font-roboto border-[var(--border_color_primary)] outline-none rounded sm:w-[288px] md-[280px] md:w-[354px]" name="" id="" placeholder="Saisissez votre message..."></textarea>
+                    </span>
+                    <button class="bg-[var(--bg_color_primary)] text-[var(--text_color_tertiary)] cursor-pointer rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center gap-x-2 hover:bg-[var(--bg_color_hover_primary)] transition transform hover:scale-105 duration-200 mt-0.5">
+                        Envoyez
+                        <i class="fa-solid fa-paper-plane text-sm"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    </div>
+    {% endblock %}
+    
+    {% block scripts %}
+<script src="{% static 'neuroa_app/js/page-en-attente-js/contact.js' %}" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const selectType = document.getElementById("typeUtilisateur");
+    const champEntreprise = document.getElementById("nomEntreprise");
+    const selectDemande = document.getElementById("typeDemande");
+
+    const demandes = {
+        entreprise: [
+            { value: "demande_entreprise_1", label: "Demande entreprise 1" },
+            { value: "demande_entreprise_2", label: "Demande entreprise 2" }
+        ],
+        candidat: [
+            { value: "demande_candidat_1", label: "Demande candidat 1" },
+            { value: "demande_candidat_2", label: "Demande candidat 2" }
+        ]
+    };
+
+    selectType.addEventListener("change", function () {
+        champEntreprise.classList.toggle("hidden", selectType.value !== "entreprise");
+
+        selectDemande.innerHTML = '<option value="" disabled selected hidden>Sélectionnez votre demande...</option>';
+        const selectedOptions = demandes[selectType.value];
+
+        if (selectedOptions) {
+            selectedOptions.forEach(opt => {
+                const option = document.createElement("option");
+                option.value = opt.value;
+                option.textContent = opt.label;
+                selectDemande.appendChild(option);
+            });
+        }
+    });
+});
+</script>
+{% endblock %}
+
+
+    

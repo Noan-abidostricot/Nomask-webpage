@@ -1,0 +1,294 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- MAIN -->
+<main class="bg-[var(--bg_color_nonary)]">  
+    <!-- SECTION HERO BANNER -->
+     
+<section class="flex flex-col justify-center items-center mb-12 pt-24 px-[52px] md:mb-0 md:items-stretch md:gap-x-9 md:pt-36 md:flex-row lg:px-[103px]"> 
+  <h1 class="">
+    Trouvez une<br /><span class="font-bold">entreprise engagée<br /></span> qui
+    respecte vos <span class="font-bold">besoins spécifiques</span>
+  </h1>
+  <!-- container les inputs + button -->
+  <div class="flex flex-col gap-y-4 pt-9 md:pt-0 md:gap-y-3.5">
+    <!-- input -->
+    <span class="border border-[var(--border_color_primary)] w-fit rounded-full pl-3 flex items-center justify-center">
+      <i class="fa-solid fa-magnifying-glass text-base text-[var(--text_color_quaternary)] pl-1"></i>
+      <input
+        class="input_large"
+        placeholder="Quel job ?"
+        type="search"
+        name=""
+        id=""
+      />
+    </span>
+    <!-- input -->
+    <span class="w-fit rounded-full border border-[var(--border_color_primary)] pl-4 flex items-center justify-center">
+        <i class="fa-solid fa-location-dot text-base text-[var(--text_color_quaternary)] pl-1"></i>
+      <input
+        class="input_large"
+        placeholder="Où ?"
+        type="search"
+        name=""
+        id=""
+      />
+    </span>
+    <!-- button -->
+    <button class="button_large cursor-pointer">
+      Rechercher
+    </button>
+    <span class="flex justify-end">
+        <a href="#" class="text-right text-xs underline hover:text-[var(--bg_color_hover_secondary)] w-fit">+ Recherche avancée</a>
+    </span>
+  </div>
+</section>
+<!-- SECTION PRESENTATION -->
+<section class="flex flex-col justify-center items-center flex-wrap gap-x-0 my-12 border-t-1 border-[var(--bg_color_denary)] px-[52px] lg:my-12 lg:px-[103px] lg:gap-x-12 lg:flex-row lg:border-0 lg:flex-nowrap lg:mt-11">
+    <img class="w-[340px] h-full lg:w-[500px]" src="{% static "neuroa_app/img/image-section-description.svg" %}" alt="illustration d'une personne qui bouqine">
+  <div class="max-w-screen-sm">
+    <h2 class="">NoMask : une “Safe Place”</h2>
+    <p class="p_interligne pt-3.5">
+      NoMask a été conçu par des experts pour favoriser l'insertion
+      professionnelle des personnes présentant un trouble neurodéveloppemental
+      (TND).<br><br>  
+      La plateforme vous permet de créer un profil et d'indiquer vos
+      besoins spécifiques. Les entreprises partenaires pourront adapter leurs
+      processus de recrutement et d'intégration en fonction de vos besoins, que
+      ce soit pour l'entretien d'embauche ou la prise de poste.<br><br>
+      Grâce à cette
+      approche personnalisée, NoMask vous aide à vous épanouir
+      professionnellement dans un environnement respectueux et inclusif.<br><br>
+      Vous
+      bénéficierez également d'un accompagnement personnalisé avec NoMask pour
+      définir vos attentes et garantir une intégration réussie dans le monde du
+      travail.
+    </p>
+    <div class="mt-8 flex justify-center">
+        <button class="button_medium cursor-pointer">S’inscrire</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION SLIDER LES DERNIERES OFFRES -->
+<section class="bg-[var(--bg_color_quinary)] border-b-2 border-[var(--border_color_quaternary)] py-6 pl-0 lg:py-9 lg:px-[103px]">
+    <h2 class="text-[var(--text_color_secondary)] text-center">Les dernières offres</h2>
+    <div class="flex items-center justify-center pl-6 md:pt-7">
+        <!-- icon left -->
+        <span class="hidden md:block">
+            <i class="fa-solid fa-chevron-left text-lg text-[var(--text_color_secondary)] mr-3 cursor-pointer hover:scale-125 duration-75"></i> 
+        </span>
+        <!-- container les cards -->
+        <div class="flex items-center gap-x-7 md:gap-x-12 overflow-x-auto pb-5">
+            <!-- card 1 -->
+            <a href="#" class="w-fit py-2.5 px-5 rounded bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 md:px-4 md:pt-8 md:pb-1">
+            <div class="flex flex-col gap-x-5 md:items-center md:flex-row">
+                <img class="rounded w-16 h-full md:w-20" src="{% static "neuroa_app/img/logo-imts.webp" %}" alt="logo entreprise">
+                <div class="w-56">
+                    <h4 class="h4_bold mt-2 md:mt-0">Institut Solacroup</h4>
+                    <h4 class="mt-0.5">Développeur Web (H/F) Django</h4>
+                </div>
+            </div>
+            <div class="flex items-center gap-x-2.5 mt-6 md:mt-9">
+                <i class="fa-solid fa-location-dot text-base text-[var(--text_color_quaternary)]"></i>
+                <p class="">Dinard - 35800</p>
+            </div>
+            <div class="flex items-center gap-x-2.5 mt-2 md:mt-4">
+                <i class="fa-solid fa-briefcase text-base text-[var(--text_color_quaternary)]"></i>
+                <p class="">Alternance</p>
+            </div>
+            <p class=".p_interligne hidden md:block md:mt-9 md:max-w-80">Solatypic est la première agence web bretonne adaptée ! Depuis nos locaux implantés à Dinard, nous donnons vie à tous vos projets de communication (web, graphisme, design, print, réseau, formation…)...</p>
+            <div class="flex items-center justify-between mt-7 md:mt-11">
+                <div class="flex items-start gap-x-2.5">
+                    <i class="fa-solid fa-calendar-days text-base text-[var(--text_color_quaternary)]"></i>
+                    <p class="text-[var(--text_color_quaternary)]">Il y a 7 jours</p>
+                </div>
+                <i class="fa-solid fa-bookmark text-lg text-[var(--text_color_quaternary)] hover:text-[var(--bg_color_hover_primary)] transition transform hover:scale-110 duration-75"></i>
+            </div>
+        </a>
+        <!-- card 2 -->
+        <a href="#" class="w-fit py-2.5 px-5 rounded bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 md:px-4 md:pt-8 md:pb-1">
+            <div class="flex flex-col gap-x-5 md:items-center md:flex-row">
+                <img class="rounded w-16 h-full md:w-20" src="{% static "neuroa_app/img/logo-imts.webp" %}" alt="logo entreprise">
+                <div class="w-56">
+                    <h4 class="h4_bold mt-2 md:mt-0">Institut Solacroup</h4>
+                    <h4 class="mt-0.5">Développeur Web (H/F) Django</h4>
+                </div>
+            </div>
+            <div class="flex items-center gap-x-2.5 mt-6 md:mt-9">
+                <i class="fa-solid fa-location-dot text-base text-[var(--text_color_quaternary)]"></i>
+                <p class="">Dinard - 35800</p>
+            </div>
+            <div class="flex items-center gap-x-2.5 mt-2 md:mt-4">
+                <i class="fa-solid fa-briefcase text-base text-[var(--text_color_quaternary)]"></i>
+                <p class="">Alternance</p>
+            </div>
+            <p class=".p_interligne hidden md:block md:mt-9 md:max-w-80">Solatypic est la première agence web bretonne adaptée ! Depuis nos locaux implantés à Dinard, nous donnons vie à tous vos projets de communication (web, graphisme, design, print, réseau, formation…)...</p>
+            <div class="flex items-center justify-between mt-7 md:mt-11">
+                <div class="flex items-start gap-x-2.5">
+                    <i class="fa-solid fa-calendar-days text-base text-[var(--text_color_quaternary)]"></i>
+                    <p class="text-[var(--text_color_quaternary)]">Il y a 7 jours</p>
+                </div>
+                <i class="fa-solid fa-bookmark text-lg text-[var(--text_color_quaternary)] hover:text-[var(--bg_color_hover_primary)] transition transform hover:scale-110 duration-75"></i>
+            </div>
+        </a>
+        <!-- card 3 -->
+        <a href="#" class="w-fit py-2.5 px-5 rounded bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 md:px-4 md:pt-8 md:pb-1">
+        <div class="flex flex-col gap-x-5 md:items-center md:flex-row">
+            <img class="rounded w-16 h-full md:w-20" src="{% static "neuroa_app/img/logo-imts.webp" %}" alt="logo entreprise">
+            <div class="w-56">
+                <h4 class="h4_bold mt-2 md:mt-0">Institut Solacroup</h4>
+                <h4 class="mt-0.5">Développeur Web (H/F) Django</h4>
+            </div>
+        </div>
+        <div class="flex items-center gap-x-2.5 mt-6 md:mt-9">
+            <i class="fa-solid fa-location-dot text-base text-[var(--text_color_quaternary)]"></i>
+            <p class="">Dinard - 35800</p>
+        </div>
+        <div class="flex items-center gap-x-2.5 mt-2 md:mt-4">
+            <i class="fa-solid fa-briefcase text-base text-[var(--text_color_quaternary)]"></i>
+            <p class="">Alternance</p>
+        </div>
+        <p class=".p_interligne hidden md:block md:mt-9 md:max-w-80">Solatypic est la première agence web bretonne adaptée ! Depuis nos locaux implantés à Dinard, nous donnons vie à tous vos projets de communication (web, graphisme, design, print, réseau, formation…)...</p>
+        <div class="flex items-center justify-between mt-7 md:mt-11">
+            <div class="flex items-start gap-x-2.5">
+                <i class="fa-solid fa-calendar-days text-base text-[var(--text_color_quaternary)]"></i>
+                <p class="text-[var(--text_color_quaternary)]">Il y a 7 jours</p>
+            </div>
+            <i class="fa-solid fa-bookmark text-lg text-[var(--text_color_quaternary)] hover:text-[var(--bg_color_hover_primary)] transition transform hover:scale-110 duration-75"></i>
+        </div>
+        </a>
+        </div>
+        <!-- icon right -->
+        <span class="hidden md:block">
+            <i class="fa-solid fa-chevron-right text-lg text-[var(--text_color_secondary)] ml-3 cursor-pointer hover:scale-125 duration-75"></i>
+        </span>
+    </div>
+    <!-- button -->
+    <div class="flex justify-center pb-0.5 mt-8 md:mt-10">
+        <button class="button_medium cursor-pointer">Voir d’autres offres</button>
+    </div>
+</section>
+
+<!-- SECTION LE GUIDE -->
+<section class="flex flex-col justify-center items-center flex-wrap gap-x-0 mt-12 px-[52px] lg:px-[103px] lg:mt-12 lg:gap-x-12  lg:flex-row lg:border-0 lg:flex-nowrap">
+  <img class="w-[340px] h-full lg:w-[500px]" src="{% static "neuroa_app/img/image-section-guide.svg" %}" alt="illustration d'une personne qui bouqine">
+  <div class="max-w-screen-sm">
+      <h2 class="text-3xl text-[var(--text_color_secondary)]">Un guide pour identifier vos besoins spécifiques</h2>
+      <p class="p_interligne pt-3.5">L'inclusion des personnes avec un Trouble du Neurodéveloppement (TND) en milieu professionnel est essentielle pour favoriser un environnement de travail équitable. Ces troubles, tels que l'autisme, le TDAH ou les troubles "Dys", peuvent impacter la communication, l'organisation et la concentration. Identifier leurs besoins permet d'aménager leur poste et de mettre en place des stratégies adaptées pour optimiser leur bien-être et leur efficacité. Ce guide propose des étapes et des solutions concrètes pour accompagner les employeurs et les salariés dans cette démarche.</p>
+      <div class="mt-8 flex justify-center">
+          <button class="button_medium cursor-pointer">Accéder au guide</button>
+      </div>
+  </div>
+  </section>
+
+     <!-- SECTION ELLES RECRUTENT -->
+     <section class="bg-[var(--bg_color_senary)] mt-16 py-8 md:mt-18 md:pb-10 md:pt-6 px-[52px] lg:px-[103px] lg:flex lg:flex-col lg:items-center">
+      <h2 class="text-center">Elles recrutent sur NoMask</h2>
+      <div class="flex items-center justify-center mt-9 md:mt-7"> 
+          <!-- icon left -->
+           <span class="hidden xl:block">
+             <i class="fa-solid fa-chevron-left text-lg text-[var(--text_color_secondary)] cursor-pointer hover:scale-125 duration-75 lg:mr-4"></i>
+           </span>
+          <!-- container les cards -->
+          <div class="w-full flex flex-col items-center overflow-x-auto pb-5 gap-y-6 md:flex-row md:gap-x-8 md:gap-y-0">
+              <!-- card -->
+              <a href="#" class="w-full flex flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52">
+                  <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+                  <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+              </a>
+
+               <!-- card -->
+               <a href="#" class="w-full flex flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52">
+                <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+                <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+            </a>
+
+             <!-- card -->
+             <a href="#" class="w-full flex flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52">
+              <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+              <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+          </a>
+
+           <!-- card -->
+           <a href="#" class="hidden w-full flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52 md:flex ">
+            <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+            <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+        </a>
+
+         <!-- card -->
+         <a href="#" class="hidden w-full flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52 md:flex ">
+          <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+          <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+      </a>
+
+          <!-- icon right -->
+           <span class="hidden xl:block">
+             <i class="fa-solid fa-chevron-right text-lg text-[var(--text_color_secondary)] -ml-4 cursor-pointer hover:scale-125 duration-75"></i>
+           </span>
+      </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[var(--bg_color_septenary)]">
+  <div class="flex flex-col items-center justify-center flex-start pt-7 pb-9 gap-y-8 lg:pt-9 lg:pb-6 lg:gap-x-40 lg:gap-y-0 lg:flex-row lg:flex-wrap">
+      <!-- container newsletter + input -->
+      <div class="flex flex-col items-center lg:items-start">
+          <p class="text-[var(--text_color_primary)] text-sm font-bold">La Newsletter</p>
+          <div class="flex items-center mt-2 lg:mt-3.5">
+              <input class="bg-[var(--text_color_primary)] w-52 h-6 rounded-l outline-none text-xs pl-2.5" type="email" name="" id="" placeholder="Entrez votre adresse mail...">
+              <button class=" bg-[var(--bg_color_primary)] rounded-r h-6 w-6 flex justify-center items-center hover:bg-[var(--bg_color_hover_primary)] transition transform hover:scale-110 duration-200"><i class="fa-solid fa-right-to-bracket text-white text-xs cursor-pointer"></i></button>
+           </div>
+      </div>
+      <!-- container nav -->
+      <div class="flex flex-col gap-y-2 items-center lg:items-start">
+          <a href="#" class="text-[var(--text_color_primary)] text-xs hover:underline">Qui sommes nous ?</a>
+          <a href="#" class="text-[var(--text_color_primary)] text-xs hover:underline">FAQ</a>
+          <a href="#" class="text-yellow-50 text-xs hover:underline">Nous rejoindre</a>
+          <a href="#" class="text-yellow-50 text-xs hover:underline">Contactez nous</a>
+          <a href="#" class="text-[var(--text_color_primary)] text-xs hover:underline">Le guide</a>
+      </div>
+      <!-- container pour les entreprises -->
+      <div class="flex flex-col gap-y-2 items-center lg:items-start">
+          <p class="text-[var(--text_color_primary)] text-sm font-bold">Pour les entreprises</p>
+          <a href="#" class="text-[var(--text_color_primary)] text-xs mt-1 hover:underline">Accès recruteur</a>
+          <a href="#" class="text-[var(--text_color_primary)] text-xs hover:underline">Ressources</a>
+          <a href="#" class="text-[var(--text_color_primary)] text-xs hover:underline">Tarifs</a>
+      </div>
+      <!-- container links reseaux sociaux -->
+      <div class="flex justify-center flex-col gap-y-5 items-center lg:mt-5 xl:mt-0">
+          <a href="#" class="h-8 w-40" href="/"><img src="{% static "neuroa_app/img/logo_ligne_beige_h40.png" %}" alt="NoMask"></a>
+          <div class="flex items-center gap-x-4">
+              <a href="#" class="h-9 w-9 hover:scale-125 duration-100"><img src="{% static "neuroa_app/img/logo-linkedin.png" %}" alt="NoMask"></a>
+              <a href="#" class="h-9 w-9 hover:scale-125 duration-100"><img src="{% static "neuroa_app/img/logo-youtube.png" %}" alt="NoMask"></a>
+              <a href="#" class="h-9 w-9 hover:scale-125 duration-100"><img src="{% static "neuroa_app/img/logo-facebook.png" %}" alt="NoMask"></a>
+              <a href="#" class="h-9 w-9 hover:scale-125 duration-100"><img src="{% static "neuroa_app/img/logo-instagram.png" %}" alt="NoMask"></a>
+          </div>
+      </div>
+  </div>
+  <!-- barre separation -->
+  <div class="m-auto bg-[var(--text_color_primary)] w-9/12 p-px"></div>
+  <!-- container cgu -->
+  <div class="flex flex-col items-center justify-center gap-y-2 pt-6 pb-7 lg:flex-row lg:gap-y-0 lg:gap-x-10">
+      <a href="#" class="text-[var(--text_color_primary)] text-xs hover:underline">CGU</a>
+      <a href="#" class="text-[var(--text_color_primary)] text-xs hover:underline">Mentions Légales</a>
+      <a href="#" class="text-[var(--text_color_primary)] text-xs hover:underline">Politiques Cookies</a>
+  </div>
+</footer>
+
+<!-- 
+<div id="app" class="min-h-screen flex flex-col">
+    <h1>{{ page_title }}</h1>
+
+    <div class="mt-8 ml-auto mr-auto text-center">
+        <img src="{% static "neuroa_app/img/icone-violet-clair.png" %}" width="200" alt="NoMask">
+        <div class="quote">
+            Recrutement inclusif,<br />
+            Talents sans limites
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+        {% include 'home-search-block.html' %}
+    {% endif %}
+</div> -->
+{% endblock %}

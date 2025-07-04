@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="app" class="min-h-screen flex flex-col bg-[var(--bg_color_nonary)]">
+    <!-- HERO BANNER -->
+    <section class="px-9 flex flex-col items-center justify-center md:flex-row gap-x-9 mt-24 lg:mt-30">
+        <h1 class=""><span class="font-bold">3 mois offerts</span><br>pour célébrer le<br>lancement de la plateforme</h1>
+        <div class="max-w-[554px] mt-5 md:mt-0">
+            <p class="font-bold">Une fois inscrit sur la plateforme vous aurez accès à :</p>
+            <ul class="list-disc pl-8 mt-5 max-w-[308px] md:max-w-full">
+                <li class="p_interligne">Une base de données de CV (CVthèque) pour rechercher le profil qui correspond à vos attententes Des informations sur les besoins spécifiques de chaque profil.</li>
+                <li class="p_interligne">Contenu de formation sur la gestion inclusives des ressources humaines.</li>
+                <li class="p_interligne">Un outil de suivi des candidatures facile à prendre en mains.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECTION CHOIX DE L'ABONNEMENT -->
+        <section class="mt-10 px-9 py-9 bg-[var(--bg_color_quinary)] flex flex-col items-center border-b-2 border-[var(--border_color_quaternary)]">
+            <h2>Choix de l’abonnement</h2>
+            <h4 class="mt-2 text-center">
+                Le prix de l’abonnement est déterminé en fonction de l’effectif de votre entreprise
+            </h4>
+            <!-- container scrollable -->
+            <div class="mt-11 w-full overflow-x-auto pb-5">
+                <!-- container cards -->
+                <div class="flex justify-center gap-x-6 md:gap-x-12 min-w-max">
+                    <!-- CARD 1 -->
+                    <div class="subscription-card bg-[var(--bg_color_octonary)] w-full max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center py-5 px-5 cursor-pointer">
+                        <img class="w-[168px] h-48 object-cover" src="{% static 'neuroa_app/img/image-section-abonnement-2-personnes.svg' %}" alt="illustration de deux personnes">
+                        <h4 class="h4_bold mt-5">- de 20 salariés</h4>
+                        <span class="mt-8 border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center">
+                        Gratuit
+                        </span>
+                    </div>
+                    <!-- CARD 2 -->
+                    <div class="subscription-card bg-[var(--bg_color_octonary)] w-full max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center py-5 px-5 cursor-pointer">
+                        <img class="w-[168px] h-48 object-cover" src="{% static 'neuroa_app/img/image-section-abonnement-3-personnes.svg' %}" alt="illustration de trois personnes">
+                        <h4 class="h4_bold mt-5">Entre 20 et 49 salariés</h4>
+                        <span class="mt-8 border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center">
+                        30€ / mois
+                        </span>
+                    </div>
+                    <!-- CARD 3 -->
+                    <div class="subscription-card bg-[var(--bg_color_octonary)] w-full max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center py-5 px-5 cursor-pointer">
+                        <img class="w-[168px] h-48 object-cover" src="{% static 'neuroa_app/img/image-section-abonnement-4-personnes.svg' %}" alt="illustration de quatre personnes">
+                        <h4 class="h4_bold mt-5">Entre 50 et 99 salariés</h4>
+                        <span class="mt-8 border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center">
+                        50€ / mois
+                        </span>
+                    </div>
+                    <!-- CARD 4 -->
+                    <div class="subscription-card bg-[var(--bg_color_octonary)] w-full max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center py-5 px-5 cursor-pointer">
+                        <img class="w-[168px] h-48 object-cover" src="{% static 'neuroa_app/img/image-section-abonnement-5-personnes.svg' %}" alt="illustration de cinq personnes">
+                        <h4 class="h4_bold mt-5">+ de 100 salariés</h4>
+                        <span class="mt-8 border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center">
+                            90€ / mois
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION INFORMATIONS DE L'ENTREPRISE -->
+         <section class="mt-10 px-5 mx-9 py-9 border border-[var(--border_color_primary)] rounded-md flex flex-col items-center md:mx-40 lg:mx-56">
+            <h3>Informations de l’entreprise</h3>
+            <!-- container label + input siret -->
+            <div class="flex flex-col mt-6">
+                <label for="">SIRET :</label>
+                <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[375px]" type="number" name="" id="" placeholder="Saisissez votre numéro de SIRET...">
+            </div>
+            <!-- container label + input nom de l'entreprise -->
+            <div class="flex flex-col mt-5">
+                <label for="">Nom de l’entreprise :</label>
+                <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[375px]" type="text" name="" id="" placeholder="Saisissez le nom de votre entreprise...">
+            </div>
+             <!-- container label + input adresse postale -->
+            <div class="flex flex-col mt-5	">
+                <label for="">Adresse postale :</label>
+                <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[375px]" type="text" name="" id="" placeholder="Saisissez l’adresse postale...">
+            </div>
+              <!-- container label + input effectif de l'entreprise -->
+            <div class="flex flex-col mt-5">
+                <label for="">Effectif de  l’entreprise :</label>
+                <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[375px]" type="text" name="" id="" placeholder="Saisissez l’effectif de l’entreprise...">
+            </div>
+
+            <h3 class="mt-10">Informations de votre compte</h3>
+              <!-- container label + input prenom/nom -->
+                <div class="flex flex-col items-center gap-x-8 mt-6 md:flex-row">
+                    <!-- container prénom -->
+                    <div class="flex flex-col">
+                        <label for="">Prénom :</label>
+                        <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[172px]" type="text" name="" id="" placeholder="Saisissez votre nom...">
+                        </div>
+                        <!-- container nom -->
+                    <div class="flex flex-col">
+                        <label for="">Nom :</label>
+                        <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[172px]" type="text" name="" id="" placeholder="Saisissez votre nom...">
+                        </div>
+                </div>
+                   <!-- container label + input email -->
+                <div class="flex flex-col mt-5">
+                    <label for="">Email :</label>
+                    <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[375px]" type="email" name="" id="" placeholder="Saisissez votre email...">
+                </div>
+                   <!-- container label + input numero de telephone -->
+                <div class="flex flex-col mt-5">
+                    <label for="">Numéro de telephone :</label>
+                    <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[375px]" type="number" name="" id="" placeholder="Saisissez votre numéro de téléphone...">
+                </div>
+                  <!-- container label + input mot de passe -->
+                <div class="flex flex-col mt-5">
+                    <label for="">Mot de passe :</label>
+                    <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[375px]" type="password" name="" id="" placeholder="Saisissez votre mot de passe...">
+                </div>
+                  <!-- container label + input verification mot de passe -->
+                <div class="flex flex-col mt-5">
+                    <label for="">Verification du mot de passe :</label>
+                    <input class="mt-1.5 w-[300px] h-10 pl-3 text-sm font-roboto border border-[var(--border_color_primary)] rounded outline-none md:w-[375px]" type="password" name="" id="" placeholder="Saisissez votre mot de passe...">
+                </div>
+
+            <h3 class="mt-10">Validation des engagements</h3>
+            <!-- text inscription -->
+            <div class="md:ml-12 mt-6">
+                <p>En vous inscrivant sur NoMask vous vous engagez à : </p>
+                <ul class="list-disc ml-5 mt-5 max-w-[400px]">
+                    <li>Respecter les besoins spécifiques des candidats.</li>
+                    <li>Respecter vos engagements de délai de réponse envers les candidats.</li>
+                    <li>Avoir une bonne tenu de vos suivi de candidatures.</li>
+                    <li>Vous renseigner sur les Handicaps Invisibles (=> presta / ressources).</li>
+                </ul>
+                <!-- input checkbox + text -->
+                <div class="flex items-start gap-x-2 mt-3 max-w-[400px]">
+                    <input class="mt-0.5" type="checkbox" name="" id="">
+                    <p>J’atteste sur l’honneur que les informations fournies sont exactes</p>
+                </div>
+                <!-- input checkbox + text -->
+                <div class="flex items-start gap-x-2 mt-1.5 max-w-[400px]">
+                    <input class="mt-0.5" type="checkbox" name="" id="">
+                    <p>Accepter les CGU</p>
+                </div>
+            </div>
+            <button class="button_large mt-8">S’abonner</button>
+
+         </section>
+</div>
+{% endblock %}
+
+ {% block scripts %}
+<script>
+   document.querySelectorAll('.subscription-card').forEach(card => {
+        card.addEventListener('click', () => {
+            // Réinitialiser toutes les cartes
+            document.querySelectorAll('.subscription-card').forEach(c => {
+                c.classList.remove('border-2', 'border-[#A63FF0]');
+                c.querySelector('h4')?.classList.remove('text-[#A63FF0]');
+                const span = c.querySelector('span');
+                span?.classList.remove('bg-[#A63FF0]', 'text-white');
+                span?.classList.add('text-[var(--text_color_secondary)]');
+                span?.classList.add('border'); // Revenir à l’état initial
+                span?.classList.add('border-[var(--border_color_primary)]');
+            });
+
+            // Appliquer les styles à la carte sélectionnée
+            card.classList.add('border-2', 'border-[#A63FF0]');
+            card.querySelector('h4')?.classList.add('text-[#A63FF0]');
+            const span = card.querySelector('span');
+            span?.classList.remove('text-[var(--text_color_secondary)]');
+            span?.classList.remove('border', 'border-[var(--border_color_primary)]'); // ❌ Retirer la bordure
+            span?.classList.add('bg-[#A63FF0]', 'text-white');
+        });
+    });
+</script>
+
+{% endblock %}

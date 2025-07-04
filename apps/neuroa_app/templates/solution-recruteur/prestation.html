@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% block scripts %}
+{% endblock %}
+<main class="flex flex-col items-center min-h-screen mt-[57px] ml-[15.1875rem] max-sm:ml-0">
+
+
+
+    <div class="flex flex-col md:flex-row w-full max-w-[750px] items-center justify-center text-center md:text-left px-4 sm:px-[50px] mt-10 md:mt-0">
+      <h1 class="w-full text-xl md:text-3xl max-md:text-[28px] max-sm:text-[28px] lg:text-4xl font-manrope font-bold mb-4 md:mb-0 max-w-xs sm:max-w-md md:max-w-none">
+        <span class="font-bold">Ajoutez</span> les <br>
+        informations du <span class="font-bold">job</span>
+      </h1>
+      <img src="{% static 'neuroa_app/img/Form-illustration.svg' %}" class="w-full max-w-[200px] sm:max-w-[300px] md:max-w-[430px] mt-4 md:mt-[-67px] max-sm:max-w-[340px]" alt="Illustration">
+    </div>
+
+    <section class="flex flex-col border border-[#27035F] rounded-[6px] mt-6 mb-[54px] px-4 sm:px-8 py-4 sm:py-8 ml-[50px] mr-[50px] w-[calc(100vw-15.1875rem-100px)] max-sm:w-[calc(100vw-100px)] max-sm:border-none max-sm:rounded-none max-w-[750px]">
+      <!-- form ... -->
+      <form class="w-full"> 
+        <h3 class="text-[#A63FF0] text-[24px] mb-[25px]">Présentation</h3>
+        <section class="flex flex-col gap-5 w-full">
+          <div class="flex flex-col w-full"> 
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Intitulé du poste :</label>
+            <input class="w-full h-[40px] border-[1px] border-[#27035F] pl-[16px] rounded-[4px] focus:outline-none focus:ring-0 focus:border-[#27035F]" type="text" placeholder="Saisissez l'intitulé du poste...">
+          </div>
+          <div class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Nom de l'entreprise :</label>
+            <input class="w-full h-[40px] border-[1px] border-[#27035F] pl-[16px] rounded-[4px] focus:outline-none focus:ring-0 focus:border-[#27035F]" type="text" placeholder="Saisissez le nom de l’entreprise...">
+          </div>
+          <div class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Lieu du job :</label>
+            <input class="w-full h-[40px] border-[1px] border-[#27035F] pl-[16px] rounded-[4px] focus:outline-none focus:ring-0 focus:border-[#27035F]" type="text" placeholder="Saisissez le lieu du job...">
+          </div>
+          <div id="contractType" class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Type de contrat :</label>
+            <select class="w-full h-[40px] border-[1px] border-[#27035F] pl-[16px] rounded-[4px]">
+              <option value="">Sélectionnez le type de contrat...</option>
+              <option value="CDI">CDI</option>
+              <option value="CDD">CDD</option>
+              <option value="Stage">Stage</option>
+              <option value="Alternance">Alternance</option>
+              <option value="Freelance">Freelance</option>
+              <option value="Intérim">Intérim</option>
+            </select>
+          </div>
+          <div id="contractTyp1" class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Temps de travail :</label>
+            <select class="w-full h-[40px] border-[1px] border-[#27035F] pl-[16px] rounded-[4px]">
+              <option value="">Sélectionnez le temps de travail...</option>
+              <option value="Temps plein">Temps plein</option>
+              <option value="Temps partiel">Temps partiel</option>
+              <option value="Horaires flexibles">Horaires flexibles</option>
+              <option value="Travail de nuit">Travail de nuit</option>
+              <option value="Week-end uniquement">Week-end uniquement</option>
+            </select>
+          </div>
+          <div id="contractType2" class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Temps de télétravail :</label>
+            <select class="w-full h-[40px] border-[1px] border-[#27035F] pl-[16px] rounded-[4px]">
+              <option value="">Sélectionnez le temps de télétravail...</option>
+              <option value="Aucun">Aucun</option>
+              <option value="Partiel (1-2 jours/semaine)">Partiel (1-2 jours/semaine)</option>
+              <option value="Hybride (3 jours ou +)">Hybride (3 jours ou +)</option>
+              <option value="100% télétravail">100% télétravail</option>
+            </select>
+          </div>
+        </section>
+
+        <hr class="w-full max-w-[400px] mx-auto mt-[59px] border-[#6C757D80]">
+
+        <h3 class="text-[#A63FF0] text-[24px] mt-[26px] mb-[23px]">Détails de l'offre</h3>
+
+        <section class="flex flex-col gap-5 w-full">
+          <div class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Descriptif du poste :</label>
+            <textarea class="w-full h-[200px] border-[1px] border-[#27035F] p-[16px] rounded-[4px] resize-none focus:outline-none focus:ring-0 focus:border-[#27035F]" placeholder="Saisissez la description du poste..."></textarea>
+          </div>
+          <div class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Compétences essentielles du job : </label>
+            <textarea class="w-full h-[200px] border-[1px] border-[#27035F] p-[16px] rounded-[4px] resize-none focus:outline-none focus:ring-0 focus:border-[#27035F]" placeholder="Saisissez les compétences essentielles..."></textarea>
+          </div>
+          <div class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Avantages du job :</label>
+            <textarea class="w-full h-[200px] border-[1px] border-[#27035F] p-[16px] rounded-[4px] resize-none focus:outline-none focus:ring-0 focus:border-[#27035F]" placeholder="Saisissez les avantages du job..."></textarea>
+          </div>
+        </section>
+
+        <hr class="w-full max-w-[400px] mx-auto mt-[59px] border-[#6C757D80]">
+
+        <h3 class="text-[#A63FF0] text-[24px] mt-[26px] mb-[23px]">Notre entreprise</h3>
+
+        <section class="flex flex-col gap-5 w-full">
+          <div class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Qui êtes vous :</label>
+            <textarea class="w-full h-[200px] border-[1px] border-[#27035F] p-[16px] rounded-[4px] resize-none focus:outline-none focus:ring-0 focus:border-[#27035F]" placeholder="Saisissez la description de votre entreprise..."></textarea>
+          </div>
+          <div class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Diversité et inclusion de l’entreprise :</label>
+            <textarea class="w-full h-[200px] border-[1px] border-[#27035F] p-[16px] rounded-[4px] resize-none focus:outline-none focus:ring-0 focus:border-[#27035F]" placeholder="Saisissez ce que vous faites pour la diversité et l’inclusion..."></textarea>
+          </div>
+        </section>
+
+        <hr class="w-full max-w-[400px] mx-auto mt-[59px] border-[#6C757D80]">
+
+        <h3 class="text-[#A63FF0] text-[24px] mt-[26px] mb-[23px]">Processus de recrutement</h3>
+
+        <section class="flex flex-col gap-5 w-full">
+          <div class="flex flex-col w-full">
+            <label class="text-[18px] text-[#27035F] mb-[4px]">Les grandes étapes de recrutement :</label>
+            <textarea class="w-full h-[200px] border-[1px] border-[#27035F] p-[16px] rounded-[4px] resize-none focus:outline-none focus:ring-0 focus:border-[#27035F]" placeholder="Saisissez les grandes étapes de recrutement..."></textarea>
+          </div>
+        </section>
+
+        <button class="bg-[#A63FF0] w-full max-w-[300px] min-h-[40px] mb-[45px] mt-[40px] md:mt-[65px] mx-auto rounded-[30px] flex items-center justify-center text-white gap-[5px] hover:bg-[#C080F7] cursor-pointer">
+          Créer l'offre
+          <img src="{% static 'neuroa_app/img/check-circle-logo.svg' %}" alt="">
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="w-full flex flex-col pb-2">
+    <hr class="h-2.5 w-full border-[#6C757D80] mb-1">
+    <div class="flex flex-col lg:flex-row justify-center items-center gap-4 px-4 py-2 ml-[15.1875rem] max-sm:ml-0">
+      <section class="font-roboto text-[12px] text-[#27035F] flex flex-col sm:flex-row gap-x-[15px] gap-y-1 text-center">
+        <a href="#">Contactez nous</a>
+        <a href="#">FAQ</a>
+        <a href="#">Ressources</a>
+        <a href="#">Tarifs</a>
+      </section>
+      <p class="font-roboto text-[#000000] hidden lg:block">-</p>
+      <section class="font-roboto text-[12px] text-[#27035F] flex flex-col sm:flex-row gap-x-[15px] gap-y-1 text-center">
+        <a href="#">CGU</a>
+        <a href="#">Mentions Légales</a>
+        <a href="#">Politiques Cookies</a>
+      </section>
+      <section class="flex gap-[14px] mt-2 lg:mt-0">
+        <a href="https://fr.linkedin.com"> <img src="{% static 'neuroa_app/img/linkedin.png' %}" alt="LinkedIn"></a>
+        <a href="https://www.youtube.com/"> <img src="{% static 'neuroa_app/img/youtube.png' %}" alt="YouTube"></a>
+        <a href="https://fr-fr.facebook.com"> <img src="{% static 'neuroa_app/img/facebook.png' %}" alt="Facebook"></a>
+        <a href="https://www.instagram.com/"> <img src="{% static 'neuroa_app/img/instagram.png' %}" alt="Instagram"></a>
+      </section>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('select').forEach(select => {
+      const togglePlaceholderStyle = () => {
+        select.classList.toggle('text-[#7F7D7A]', select.value === '');
+        select.classList.toggle('text-black', select.value !== '');
+      };
+      togglePlaceholderStyle(); // état initial
+      select.addEventListener('change', togglePlaceholderStyle);
+    });
+  </script>
+{% endblock %}

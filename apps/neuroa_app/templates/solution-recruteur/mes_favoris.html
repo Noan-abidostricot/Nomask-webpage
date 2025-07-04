@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% block scripts %}
+{% endblock %}
+<main class="flex flex-col items-center min-h-screen mt-[57px] ml-[15.1875rem] max-sm:ml-0">
+
+  <!-- ===== HEADER : Titre & illustration ===== -->
+  <div class="flex flex-col lg:flex-row w-full max-w-[900px] items-center justify-center 
+    text-center lg:text-left px-0 sm:px-4 md:px-[50px] mt-6 md:mt-40 gap-6 md:gap-0 lg:mt-[-20px]">
+
+    <h1 class="flex-1 min-w-0
+          text-2xl sm:text-3xl md:text-4xl lg:text-[38px] 
+          font-manrope font-normal
+          mb-0 md:mb-20
+          mt-0 md:mt-[-150px]
+          max-sm:text-[28px]
+          max-sm:mt-[53px]
+          lg:mt-[1px]">
+      Visualisez vos favoris
+    </h1>
+
+    <img src="{% static 'neuroa_app/img/like.svg' %}"
+      class="mx-auto w-[240px] max-w-full sm:w-[340px] sm:max-w-[360px] md:max-w-[340px] lg:max-w-[320px] mt-0 md:mt-[-67px] lg:mt-2"
+      alt="Illustration">
+  </div>
+
+  <!-- ===== LISTE DES FAVORIS (Cartes) ===== -->
+  <div class="gap-[31px] flex flex-row justify-center flex-wrap min-h-[768px] max-w-[992px] mb-[49px]">
+
+    <!-- === Carte Favori 1 === -->
+    <div class="w-[310px] h-[368px] rounded-[6px] border border-solid border-[#27035F] ">
+      <!-- Profil : Photo et infos principales -->
+      <div class="flex flex-row">
+        <img src="{% static 'neuroa_app/img/photo-profil-exemple.png' %}" alt="photo de profil" class="mt-[5px] ml-[13px]">
+        <div class="ml-[15px] mt-[5px]">
+          <h4 class="text-[#27035F] font-manrope font-[18px] ">Raphael Matthey</h4>
+          <h4 class="text-[#27035F] font-manrope text-[18px] font-bold">Développeur Full Stack</h4>
+        </div>
+      </div>
+
+      <!-- Localisation -->
+      <div class="flex ml-[20px] mb-[15px] mt-[14px]">
+        <img src="{% static 'neuroa_app/img/map-point.svg' %}" alt="" class="mr-[10px]">
+        <p>Dinard - 35800</p>
+      </div>
+
+      <!-- Présentation -->
+      <div class="flex ml-[20px]">
+        <img src="{% static 'neuroa_app/img/document-logo.svg' %}" alt="" class="mr-[10px]">
+        <p>Présentation :</p>
+      </div>
+      <div class="w-[253px] [#27035F] font-roboto text-sm not-italic font-normal leading-[20px] ml-[44px] mt-[1px]">
+        Ac ne quis a nobis hoc ita dici forte miretur, quod alia quaedam in hoc facultas sit ingeni, neque haec dicendi ratio aut disciplina, ne nos quidem huic uni studio penitus umquam dediti fuimus. Etenim omnes artes, quae ad humanitatem pertinent...
+      </div>
+
+      <!-- Bouton voir profil -->
+      <button class="w-[140px] h-[34px] bg-[#6553DF] text-white rounded-[60px] mt-[19px] ml-[85px] hover:bg-[#7c6dfa] group cursor-pointer">
+        Voir le profil
+      </button>
+
+      <!-- Bookmark Favori (cliquable) -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="#A63FF0" class="bookmark ml-[274px] mt-[-15px] cursor-pointer">
+        <path class="bookmarkPath" d="M7.5 31.5V7.5C7.5 6.675 7.79375 5.96875 8.38125 5.38125C8.96875 4.79375 9.675 4.5 10.5 4.5H25.5C26.325 4.5 27.0312 4.79375 27.6187 5.38125C28.2062 5.96875 28.5 6.675 28.5 7.5V31.5L18 27L7.5 31.5Z" fill="#A63FF0"/>
+      </svg>
+    </div>
+    <!-- === Carte Favori 2 === -->
+    <div class="w-[310px] h-[368px] rounded-[6px] border border-solid border-[#27035F] ">
+      <div class="flex flex-row">
+        <img src="{% static 'neuroa_app/img/photo-profil-exemple.png' %}" alt="photo de profil" class="mt-[5px] ml-[13px]">
+        <div class="ml-[15px] mt-[5px]">
+          <h4 class="text-[#27035F] font-manrope font-[18px] ">Raphael Matthey</h4>
+          <h4 class="text-[#27035F] font-manrope text-[18px] font-bold">Développeur Full Stack</h4>
+        </div>
+      </div>
+      <div class="flex ml-[20px] mb-[15px] mt-[14px]">
+        <img src="{% static 'neuroa_app/img/map-point.svg' %}" alt="" class="mr-[10px]">
+        <p>Dinard - 35800</p>
+      </div>
+      <div class="flex ml-[20px]">
+        <img src="{% static 'neuroa_app/img/document-logo.svg' %}" alt="" class="mr-[10px]">
+        <p>Présentation :</p>
+      </div>
+      <div class="w-[253px] [#27035F] font-roboto text-sm not-italic font-normal leading-[20px] ml-[44px] mt-[1px]">
+        Ac ne quis a nobis hoc ita dici forte miretur, quod alia quaedam in hoc facultas sit ingeni, neque haec dicendi ratio aut disciplina, ne nos quidem huic uni studio penitus umquam dediti fuimus. Etenim omnes artes, quae ad humanitatem pertinent...
+      </div>
+      <button class="w-[140px] h-[34px] bg-[#6553DF] text-white rounded-[60px] mt-[19px] ml-[85px] hover:bg-[#7c6dfa] group cursor-pointer">
+        Voir le profil
+      </button>
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="#A63FF0" class="bookmark ml-[274px] mt-[-15px] cursor-pointer">
+        <path class="bookmarkPath" d="M7.5 31.5V7.5C7.5 6.675 7.79375 5.96875 8.38125 5.38125C8.96875 4.79375 9.675 4.5 10.5 4.5H25.5C26.325 4.5 27.0312 4.79375 27.6187 5.38125C28.2062 5.96875 28.5 6.675 28.5 7.5V31.5L18 27L7.5 31.5Z" fill="#A63FF0"/>
+      </svg>
+    </div>
+
+    <!-- === Carte Favori 3 === -->
+    <div class="w-[310px] h-[368px] rounded-[6px] border border-solid border-[#27035F] ">
+      <div class="flex flex-row">
+        <img src="{% static 'neuroa_app/img/photo-profil-exemple.png' %}" alt="photo de profil" class="mt-[5px] ml-[13px]">
+        <div class="ml-[15px] mt-[5px]">
+          <h4 class="text-[#27035F] font-manrope font-[18px] ">Raphael Matthey</h4>
+          <h4 class="text-[#27035F] font-manrope text-[18px] font-bold">Développeur Full Stack</h4>
+        </div>
+      </div>
+      <div class="flex ml-[20px] mb-[15px] mt-[14px]">
+        <img src="{% static 'neuroa_app/img/map-point.svg' %}" alt="" class="mr-[10px]">
+        <p>Dinard - 35800</p>
+      </div>
+      <div class="flex ml-[20px]">
+        <img src="{% static 'neuroa_app/img/document-logo.svg' %}" alt="" class="mr-[10px]">
+        <p>Présentation :</p>
+      </div>
+      <div class="w-[253px] [#27035F] font-roboto text-sm not-italic font-normal leading-[20px] ml-[44px] mt-[1px]">
+        Ac ne quis a nobis hoc ita dici forte miretur, quod alia quaedam in hoc facultas sit ingeni, neque haec dicendi ratio aut disciplina, ne nos quidem huic uni studio penitus umquam dediti fuimus. Etenim omnes artes, quae ad humanitatem pertinent...
+      </div>
+      <button class="w-[140px] h-[34px] bg-[#6553DF] text-white rounded-[60px] mt-[19px] ml-[85px] hover:bg-[#7c6dfa] group cursor-pointer">
+        Voir le profil
+      </button>
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="#A63FF0" class="bookmark ml-[274px] mt-[-15px] cursor-pointer">
+        <path class="bookmarkPath" d="M7.5 31.5V7.5C7.5 6.675 7.79375 5.96875 8.38125 5.38125C8.96875 4.79375 9.675 4.5 10.5 4.5H25.5C26.325 4.5 27.0312 4.79375 27.6187 5.38125C28.2062 5.96875 28.5 6.675 28.5 7.5V31.5L18 27L7.5 31.5Z" fill="#A63FF0"/>
+      </svg>
+    </div>
+
+    <!-- === Carte Favori 4 === -->
+    <div class="w-[310px] h-[368px] rounded-[6px] border border-solid border-[#27035F] ">
+      <div class="flex flex-row">
+        <img src="{% static 'neuroa_app/img/photo-profil-exemple.png' %}" alt="photo de profil" class="mt-[5px] ml-[13px]">
+        <div class="ml-[15px] mt-[5px]">
+          <h4 class="text-[#27035F] font-manrope font-[18px] ">Raphael Matthey</h4>
+          <h4 class="text-[#27035F] font-manrope text-[18px] font-bold">Développeur Full Stack</h4>
+        </div>
+      </div>
+      <div class="flex ml-[20px] mb-[15px] mt-[14px]">
+        <img src="{% static 'neuroa_app/img/map-point.svg' %}" alt="" class="mr-[10px]">
+        <p>Dinard - 35800</p>
+      </div>
+      <div class="flex ml-[20px]">
+        <img src="{% static 'neuroa_app/img/document-logo.svg' %}" alt="" class="mr-[10px]">
+        <p>Présentation :</p>
+      </div>
+      <div class="w-[253px] [#27035F] font-roboto text-sm not-italic font-normal leading-[20px] ml-[44px] mt-[1px]">
+        Ac ne quis a nobis hoc ita dici forte miretur, quod alia quaedam in hoc facultas sit ingeni, neque haec dicendi ratio aut disciplina, ne nos quidem huic uni studio penitus umquam dediti fuimus. Etenim omnes artes, quae ad humanitatem pertinent...
+      </div>
+      <button class="w-[140px] h-[34px] bg-[#6553DF] text-white rounded-[60px] mt-[19px] ml-[85px] hover:bg-[#7c6dfa] group cursor-pointer">
+        Voir le profil
+      </button>
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="#A63FF0" class="bookmark ml-[274px] mt-[-15px] cursor-pointer">
+        <path class="bookmarkPath" d="M7.5 31.5V7.5C7.5 6.675 7.79375 5.96875 8.38125 5.38125C8.96875 4.79375 9.675 4.5 10.5 4.5H25.5C26.325 4.5 27.0312 4.79375 27.6187 5.38125C28.2062 5.96875 28.5 6.675 28.5 7.5V31.5L18 27L7.5 31.5Z" fill="#A63FF0"/>
+      </svg>
+    </div>
+
+    <!-- === Carte Favori 5 === -->
+    <div class="w-[310px] h-[368px] rounded-[6px] border border-solid border-[#27035F] ">
+      <div class="flex flex-row">
+        <img src="{% static 'neuroa_app/img/photo-profil-exemple.png' %}" alt="photo de profil" class="mt-[5px] ml-[13px]">
+        <div class="ml-[15px] mt-[5px]">
+          <h4 class="text-[#27035F] font-manrope font-[18px] ">Raphael Matthey</h4>
+          <h4 class="text-[#27035F] font-manrope text-[18px] font-bold">Développeur Full Stack</h4>
+        </div>
+      </div>
+      <div class="flex ml-[20px] mb-[15px] mt-[14px]">
+        <img src="{% static 'neuroa_app/img/map-point.svg' %}" alt="" class="mr-[10px]">
+        <p>Dinard - 35800</p>
+      </div>
+      <div class="flex ml-[20px]">
+        <img src="{% static 'neuroa_app/img/document-logo.svg' %}" alt="" class="mr-[10px]">
+        <p>Présentation :</p>
+      </div>
+      <div class="w-[253px] [#27035F] font-roboto text-sm not-italic font-normal leading-[20px] ml-[44px] mt-[1px]">
+        Ac ne quis a nobis hoc ita dici forte miretur, quod alia quaedam in hoc facultas sit ingeni, neque haec dicendi ratio aut disciplina, ne nos quidem huic uni studio penitus umquam dediti fuimus. Etenim omnes artes, quae ad humanitatem pertinent...
+      </div>
+      <button class="w-[140px] h-[34px] bg-[#6553DF] text-white rounded-[60px] mt-[19px] ml-[85px] hover:bg-[#7c6dfa] group cursor-pointer">
+        Voir le profil
+      </button>
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="#A63FF0" class="bookmark ml-[274px] mt-[-15px] cursor-pointer">
+        <path class="bookmarkPath" d="M7.5 31.5V7.5C7.5 6.675 7.79375 5.96875 8.38125 5.38125C8.96875 4.79375 9.675 4.5 10.5 4.5H25.5C26.325 4.5 27.0312 4.79375 27.6187 5.38125C28.2062 5.96875 28.5 6.675 28.5 7.5V31.5L18 27L7.5 31.5Z" fill="#A63FF0"/>
+      </svg>
+    </div>
+
+    <!-- === Carte Favori 6 === -->
+    <div class="w-[310px] h-[368px] rounded-[6px] border border-solid border-[#27035F] ">
+      <div class="flex flex-row">
+        <img src="{% static 'neuroa_app/img/photo-profil-exemple.png' %}" alt="photo de profil" class="mt-[5px] ml-[13px]">
+        <div class="ml-[15px] mt-[5px]">
+          <h4 class="text-[#27035F] font-manrope font-[18px] ">Raphael Matthey</h4>
+          <h4 class="text-[#27035F] font-manrope text-[18px] font-bold">Développeur Full Stack</h4>
+        </div>
+      </div>
+      <div class="flex ml-[20px] mb-[15px] mt-[14px]">
+        <img src="{% static 'neuroa_app/img/map-point.svg' %}" alt="" class="mr-[10px]">
+        <p>Dinard - 35800</p>
+      </div>
+      <div class="flex ml-[20px]">
+        <img src="{% static 'neuroa_app/img/document-logo.svg' %}" alt="" class="mr-[10px]">
+        <p>Présentation :</p>
+      </div>
+      <div class="w-[253px] [#27035F] font-roboto text-sm not-italic font-normal leading-[20px] ml-[44px] mt-[1px]">
+        Ac ne quis a nobis hoc ita dici forte miretur, quod alia quaedam in hoc facultas sit ingeni, neque haec dicendi ratio aut disciplina, ne nos quidem huic uni studio penitus umquam dediti fuimus. Etenim omnes artes, quae ad humanitatem pertinent...
+      </div>
+      <button class="w-[140px] h-[34px] bg-[#6553DF] text-white rounded-[60px] mt-[19px] ml-[85px] hover:bg-[#7c6dfa] group cursor-pointer">
+        Voir le profil
+      </button>
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="#A63FF0" class="bookmark ml-[274px] mt-[-15px] cursor-pointer">
+        <path class="bookmarkPath" d="M7.5 31.5V7.5C7.5 6.675 7.79375 5.96875 8.38125 5.38125C8.96875 4.79375 9.675 4.5 10.5 4.5H25.5C26.325 4.5 27.0312 4.79375 27.6187 5.38125C28.2062 5.96875 28.5 6.675 28.5 7.5V31.5L18 27L7.5 31.5Z" fill="#A63FF0"/>
+      </svg>
+    </div>
+
+  </div>
+  <!-- ===== FIN LISTE DES FAVORIS ===== -->
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="w-full flex flex-col pb-2">
+  <hr class="h-2.5 w-full border-[#6C757D80] mb-1">
+  <div class="flex flex-col lg:flex-row justify-center items-center gap-4 px-4 py-2 ml-[15.1875rem] max-sm:ml-0">
+    <section class="font-roboto text-[12px] text-[#27035F] flex flex-col sm:flex-row gap-x-[15px] gap-y-1 text-center">
+      <a href="#">Contactez nous</a>
+      <a href="#">FAQ</a>
+      <a href="#">Ressources</a>
+      <a href="#">Tarifs</a>
+    </section>
+    <p class="font-roboto text-[#000000] hidden lg:block">-</p>
+    <section class="font-roboto text-[12px] text-[#27035F] flex flex-col sm:flex-row gap-x-[15px] gap-y-1 text-center">
+      <a href="#">CGU</a>
+      <a href="#">Mentions Légales</a>
+      <a href="#">Politiques Cookies</a>
+    </section>
+    <section class="flex gap-[14px] mt-2 lg:mt-0">
+      <a href="https://fr.linkedin.com">
+        <img src="{% static 'neuroa_app/img/linkedin.png' %}" alt="LinkedIn">
+      </a>
+      <a href="https://www.youtube.com/">
+        <img src="{% static 'neuroa_app/img/youtube.png' %}" alt="YouTube">
+      </a>
+      <a href="https://fr-fr.facebook.com">
+        <img src="{% static 'neuroa_app/img/facebook.png' %}" alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com/">
+        <img src="{% static 'neuroa_app/img/instagram.png' %}" alt="Instagram">
+      </a>
+    </section>
+  </div>
+</footer>
+
+<!-- ===== JS : Gestion du bookmark favori (toggle color/outline) ===== -->
+<script>
+  // Gère l'icône bookmark (rempli <-> contour) sur clic
+  document.querySelectorAll('.bookmark').forEach(svg => {
+    const path = svg.querySelector('.bookmarkPath');
+    svg.isOutlined = false;
+    svg.addEventListener('click', () => {
+      if (!svg.isOutlined) {
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke", "#A63FF0");
+        path.setAttribute("stroke-width", "2");
+      } else {
+        path.setAttribute("fill", "#A63FF0");
+        path.setAttribute("stroke", "none");
+        path.setAttribute("stroke-width", "0");
+      }
+      svg.isOutlined = !svg.isOutlined;
+    });
+  });
+</script>
+{% endblock %}

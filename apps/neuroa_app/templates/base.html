@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NoMask{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+       <style type="text/tailwindcss">
+        @theme {
+             /* colors text */  
+            --text_color_primary: #FBEFD9;
+            --text_color_secondary: #27035F;
+            --text_color_tertiary: #FFFFFF;  
+            --text_color_quaternary: #6C757D;
+            --text_color_quinary: #452B9F;
+            --text_color_senary: #6553DF;
+            --text_color_septenary: #d80032;
+            --text_color_octanary: #55a630;
+            --text_color_nonary: #A63FF0;
+           
+            /* bg colors */
+            --bg_color_primary: #A63FF0;
+            --bg_color_secondary: #6553DF;
+            --bg_color_tertiary: #452B9F;
+            --bg_color_quaternary: #FBEFD9;
+            --bg_color_quinary: #dcf0da;
+            --bg_color_senary: #F0F0F0;
+            --bg_color_septenary: #263238;
+            --bg_color_octonary: #FFFFFF; 
+            --bg_color_nonary: #fefbf5; 
+            --bg_color_denary: #b5b7b8;  
+            --bg_color_undenary: #d80032;  
+            --bg_color_duodenary: #fdf8ed;  
+            
+            /* bg colors hover */
+            --bg_color_hover_primary: #c300ff;
+            --bg_color_hover_secondary: #605dff;
+            --bg_color_hover_tertiary: #ef233c;
+            --bg_color_hover_quaternary: #FFFFFF;
+            
+            /* border */
+            --border_color_primary: #27035F;
+            --border_color_secondary: #452B9F;
+            --border_color_tertiary: #FBEFD9;
+            --border_color_quaternary: #e6e3de;
+            --border_color_quinary: #A63FF0;
+            --border_color_senary: #6553DF;
+
+            /* input */
+            --input_color_primary: #6C757D;
+
+            /* fonts */
+            --font-manrope: "Manrope", sans-serif;
+            --font-roboto: "Roboto", sans-serif;
+
+           
+        }
+
+        @layer base { 
+            /* h3 { @apply text-xl font-manrope font-normal text-blue-900; }
+            .subtitle { @apply text-lg font-roboto font-medium text-violet-fonce; }
+            .description { @apply text-sm font-roboto font-light text-neutral-500; }
+            h4 { @apply font-manrope text-blue-900 text-base font-normal; }
+            label { @apply font-roboto text-neutral-400 text-base mb-1; }
+            input, textarea, select { @apply text-sm; }
+            button { @apply cursor-pointer; }
+            .btn { @apply w-full bg-violet-medium text-beige p-2 rounded hover:bg-violet-fonce disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:opacity-50 font-roboto cursor-pointer; }
+            .btn-secondary { @apply bg-violet-clair hover:bg-violet-clair-hover; }
+            .btn-gray { @apply bg-neutral-200 text-neutral-500 hover:bg-neutral-300; }
+            .btn-square { @apply w-5/6 rounded-none bg-beige text-violet-fonce hover:bg-neutral-50 hover:text-marine border border-gray-300; }
+            .btn-icon { @apply text-neutral-400 hover:text-marine cursor-pointer; }
+            .tab { @apply flex-1 py-2 px-2 sm:px-4 text-sm sm:text-base bg-gray-200; }
+            .tab.selected { @apply bg-violet-medium text-beige; }
+            .dropdown-cont { @apply absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg; }
+            .dropdown-cont a { @apply block px-4 py-2 text-sm text-marine hover:bg-neutral-100; }
+            .quote { @apply mt-6 text-2xl font-roboto italic text-violet-fonce; }
+            section { @apply ml-auto mr-auto bg-yellow-50/50; }
+            section.no-bg { @apply border-none bg-inherit; }
+            section h1 { @apply text-blue-900 font-manrope; }
+            section h2 { @apply text-blue-900 font-manrope; }
+            section h3 { @apply text-blue-900 font-manrope; }
+            section.section-sm { @apply w-1/3 rounded-md p-8; }
+            section.section-sm input { @apply w-full text-sm p-2 border border-gray-300 bg-white rounded my-2; }
+            section.section-sm h2 { @apply text-violet-fonce text-center font-medium mb-8 w-4/5 ml-auto mr-auto; }
+            section.section-sm h2 strong { @apply text-marine font-black; }
+            section .row { @apply flex flex-row hover:bg-neutral-50; }
+            section .label { @apply font-bold text-violet-fonce; }
+            section .long-text { @apply border border-neutral-300 p-2 min-h-40 mb-4 hover:bg-neutral-50 text-sm; }
+            section .row .label { @apply basis-1/4; }
+            section .row .field { @apply basis-3/4; }
+            section .row .label.full { @apply basis-1/8; }
+            section .row .field.full { @apply basis-7/8; }
+            .pill { @apply rounded-md bg-beige text-violet-fonce font-medium py-1 px-2; }
+            .no_results { @apply pl-4 mt-2 text-neutral-400 italic; }
+            .input-lg {
+                @apply px-4 py-2 border border-gray-300 bg-white w-full;
+            }
+            .input-icon {
+                background: 5px 10px no-repeat white;
+                background-size: 20px 20px;
+                padding-left: 32px;
+            }
+            .input-search {
+                background-image: url({% static 'images/search_icon.png' %});
+            }
+            .input-location {
+                background-image: url({% static 'images/location_icon.png' %});
+            }
+            .buttons-container { @apply mt-8 flex w-1/2 ml-auto; } */
+
+            /* MODAL */
+            .modal {@apply fixed inset-0 bg-black/50 hidden items-center justify-center overflow-y-auto font-roboto;}
+            .modal-box {@apply bg-yellow-50 font-roboto;}
+            .modal-content {@apply max-h-[calc(100vh-4rem)] overflow-y-auto font-roboto;}
+            .modal input, .modal select, .modal textarea { @apply w-full border rounded p-2 font-roboto; }
+
+            /* FONTS */
+            h1 { @apply leading-normal text-[var(--text_color_secondary)] font-manrope font-normal text-2xl lg:text-4xl; }
+            h2 { @apply leading-normal font-manrope font-semibold text-[var(--text_color_secondary)] text-xl lg:text-3xl; }
+            h3 { @apply leading-normal font-manrope font-normal text-[var(--text_color_secondary)] text-xl lg:text-2xl; }
+            .h4_bold { @apply leading-normal text-lg font-manrope text-[var(--text_color_secondary)] font-bold; }
+            h4 { @apply leading-normal text-lg font-manrope font-normal text-[var(--text_color_secondary)]; }
+            .p_interligne { @apply leading-normal text-sm font-normal text-[var(--text_color_secondary)] font-roboto; }
+            p { @apply text-sm font-normal text-[var(--text_color_secondary)] font-roboto; }
+            li { @apply text-sm font-normal text-[var(--text_color_secondary)] font-roboto; }
+            a { @apply font-normal text-xs text-[var(--text_color_secondary)] font-roboto; }
+
+            /* INPUTS */
+            input::placeholder { @apply placeholder-[var(--text_color_quaternary)]; }
+            .input_large { @apply w-80 h-10 pl-3 text-sm font-roboto border-[var(--border_color_primary)] outline-none lg:w-72; }
+            .input_medium { @apply w-60 h-10 pl-3 text-sm font-roboto border-[var(--border_color_primary)] outline-none rounded md:w-[475px]; }
+            .input_small { @apply w-60 h-10 pl-3 text-sm font-roboto border-[var(--border_color_primary)] outline-none rounded md:w-[275px]; }
+            .input_form { @apply w-[220px] h-10 pl-3 text-sm font-roboto border-[var(--border_color_primary)] outline-none rounded sm:w-[308px] md:w-[374px]; }
+            label { @apply leading-normal text-lg font-normal text-[var(--text_color_secondary)] font-roboto; }
+            select { @apply cursor-pointer; }
+            /* input specifique mobilités du drawer vos infos dans la page profil */
+            .select2-selection { @apply w-[200px] h-10 pl-3 -mt-5 pt-[3px] text-sm font-roboto border-[var(--border_color_primary)] outline-none rounded md:w-[590px]; }
+
+            /* BUTTONS */
+            .selected { @apply bg-[var(--bg_color_secondary)] text-[var(--text_color_tertiary)] hover:bg-[var(--bg_color_hover_secondary)]; }
+            .unselected { @apply text-[var(--text_color_secondary)] border border-[var(--border_color_primary)] hover:bg-[var(--bg_color_hover_quaternary)] ;}
+            .button_disabled { @apply w-72 h-10 rounded-full bg-gray-400 text-gray-600 text-base font-roboto flex items-center justify-center cursor-not-allowed opacity-50 md:w-56; }
+            .button_large { @apply w-[320px] h-10 rounded-full bg-[var(--bg_color_primary)] text-[var(--text_color_tertiary)] cursor-pointer text-base font-roboto flex items-center justify-center hover:bg-[var(--bg_color_hover_primary)] transition transform hover:scale-105 duration-200 lg:w-80; }
+            .button_medium { @apply bg-[var(--bg_color_secondary)] text-[var(--text_color_tertiary)] cursor-pointer rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center  hover:bg-[var(--bg_color_hover_secondary)] transition transform hover:scale-105 duration-200; }
+            /* violet */
+            .button_xs_desktop { @apply w-30 h-8 rounded-full text-sm bg-[var(--bg_color_primary)] cursor-pointer text-[var(--text_color_tertiary)] flex items-center justify-center gap-x-2 hover:bg-[var(--bg_color_hover_primary)] transition transform hover:scale-105 duration-200; }
+            .button_xs_smartphone { @apply w-8 h-8 rounded-full text-sm bg-[var(--bg_color_primary)] cursor-pointer text-[var(--text_color_tertiary)] flex items-center justify-center gap-x-2 hover:bg-[var(--bg_color_hover_primary)] transition transform hover:scale-110 duration-200; }
+            /* rouge */
+            .button_xs_2 { @apply py-[8px] px-[9px] rounded-full text-sm bg-[var(--bg_color_undenary)] cursor-pointer text-[var(--text_color_tertiary)] flex items-center justify-center md:py-[10px] md:px-[11px] hover:bg-[var(--bg_color_hover_tertiary)] transition transform hover:scale-110 duration-200; }
+            /* transparent bordure bleu */
+            .button_xs_3 { @apply py-[8px] px-[10px] rounded-full text-sm border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] cursor-pointer flex items-center justify-center md:py-[10px] md:px-[12px] hover:bg-[var(--bg_color_hover_quaternary)] transition transform hover:scale-110 duration-200; }
+
+            .button_retour { @apply  bg-[var(--bg_color_secondary)] text-[var(--text_color_tertiary)] cursor-pointer w-32 h-8 rounded-full flex items-center justify-center gap-x-1.5 text-base hover:bg-[var(--bg_color_hover_secondary)] transition transform hover:scale-105 duration-200; }
+            .tag { @apply  text-[var(--text_color_secondary)] text-sm border border-[var(--border_color_primary)] rounded-full bg-[var(--bg_color_senary)] py-1.5 px-3.5 w-fit flex items-center justify-center gap-x-2; }
+            .button_add_desktop { @apply w-30 h-8 text-sm rounded-full bg-[var(--bg_color_primary)] cursor-pointer text-[var(--text_color_tertiary)] flex items-center justify-center gap-x-2 hover:bg-[var(--bg_color_hover_primary)] transition transform hover:scale-105 duration-200; }
+            .button_add_smartphone { @apply w-8 h-8 text-sm rounded-full bg-[var(--bg_color_primary)] cursor-pointer text-[var(--text_color_tertiary)] flex items-center justify-center gap-x-2 hover:bg-[var(--bg_color_hover_primary)] transition transform hover:scale-105 duration-200; }
+            .button_modify_desktop { @apply w-30 h-8 text-sm rounded-full border border-[var(--text_color_secondary)] cursor-pointer text-[var(--text_color_secondary)] flex items-center justify-center gap-x-2 hover:bg-[var(--bg_color_hover_quaternary)] transition transform hover:scale-105 duration-200; }
+            .button_modify_smartphone { @apply py-[8px] px-[8px] text-sm rounded-full border border-[var(--text_color_secondary)] cursor-pointer text-[var(--text_color_secondary)] flex items-center justify-center gap-x-2 hover:bg-[var(--bg_color_hover_quaternary)] transition transform hover:scale-110 duration-200; }
+            .button_save_drawer { @apply w-72 h-10 rounded-full bg-[var(--bg_color_primary)] text-[var(--text_color_tertiary)] text-base font-roboto flex items-center justify-center cursor-pointer hover:bg-[var(--bg_color_hover_primary)] transition transform hover:scale-105 duration-200 md:w-56; }
+            .button_cancel_drawer { @apply w-72 h-10 rounded-full border text-[var(--text_color_secondary)] border-[var(--border_color_primary)] text-base font-roboto flex items-center justify-center hover:bg-[var(--bg_color_hover_quaternary)] transition transform hover:scale-105 duration-200 cursor-pointer md:w-56; }
+        }
+    </style>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    {% block extra_head %}{% endblock %}
+</head>
+
+<style>
+    @media (max-width: 640px) {
+  .force-hide-mobile {
+    display: none !important;
+  }
+}
+
+</style>
+<body class="min-h-screen flex flex-col bg-[var(--bg_color_nonary)] ">
+    <!-- NAV BAR -->
+    {% if recruiter %}
+    <!-- Barre horizontale mobile (toujours visible sur mobile) -->
+    <nav id="horizontalBar" class="z-10 fixed flex flex-row items-center w-full bg-[var(--bg_color_tertiary)] px-6 h-16 transition-transform duration-300 ease-in-out  sm:hidden">
+
+        <!--Logo NoMask-->
+        <a href="/" class="flex items-center ">
+            <img src="{% static 'neuroa_app/img/logo_ligne_beige_h40.png' %}" class="max-w-[150px]" alt="NoMask">
+        </a>
+
+        <!--Bouton profil qui ouvre la sidebar-->
+        <div id="openSidebarBtn" class="flex items-center ml-auto cursor-pointer">
+            <img id="userIcon" src="{% static 'neuroa_app/img/account-logo.svg' %}" class="size-[28.145px]" alt="NoMask">
+            <p id="userText" class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Profil</p>
+        </div>
+    </nav>
+
+    <!-- Sidebar verticale mobile (drawer) -->
+    <nav id="mobileSidebar"
+         class="fixed top-0 left-0 z-50 h-full w-[360px] max-w-[90vw] min-w-[360px] bg-[var(--bg_color_tertiary)] transition-transform duration-300 -translate-x-full ease-in-out  sm:hidden">
+        <button id="closeSidebarBtn" class="absolute flex  items-center w-[70px] h-[55px] rounded-[50%] top-8 left-78 bg-[var(--bg_color_tertiary)] text-xl text-[var(--text_color_tertiary) ] max-sm:hidden cursor-pointer">
+            <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" class="scale-x-[-1] ml-[35px]"alt="">
+        </button>
+        <div class="flex flex-col mt-[0px] gap-5">"
+            <a href="/" class="ml-[40px] flex items-center max-w-[150px]">
+                <img src="{% static 'neuroa_app/img/logo_ligne_beige_h40.png' %}" class="max-w-[150px]" alt="NoMask">
+            </a>
+
+            <hr class="unhide hrLogOut  border-[#FBEFD9] border-t-[1px] mt-[19px] w-[288px] ml-[40px]">
+
+            <div class="flex ml-[40px] items-center max-sm:w-[288px] pl-8 h-[34px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/account-logo.svg' %}" alt="Add logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Profil
+                </p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+
+            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/add-logo.svg' %}" alt="Add logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Créer un job</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/work-logo.svg' %}" alt="Work logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Gérer mes jobs</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/search-logo.svg' %}" alt="Search logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Chercher un profil</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/docs-logo.svg' %}" alt="Docs logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Suivi des candidatures</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/bookmark-logo.svg' %}" alt="Bookmark logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Mes favoris</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+
+            <hr class="unhide hrLogOut  border-[#FBEFD9] border-t-[1px] mt-[19px] w-[288px] ml-[40px]">
+
+            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] mt-4 rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/mail-logo.svg' %}" alt="Mail logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">adressemail@gmail.com</p>
+            </div>
+            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/shopping-logo.svg' %}" alt="Shopping logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Acheter des prestations</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="absolute hidden group-hover:block ml-auto right-[40px]" />
+            </div>
+            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/euro-logo.svg' %}" alt="Euro logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Gérer mes abonnements</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="absolute hidden group-hover:block ml-auto right-[40px]" />
+            </div>
+            <hr class="unhide hrLogOut max-sm:mt-[1100px] border-[#FBEFD9] border-t-[1px] mt-[19px] w-[288px] ml-[40px]">
+
+            <div class="flex ml-[40px] justify-center items-center h-[34px] w-[288px] mt-4 rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/cancel-logo.svg' %}" alt="Cancel logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Déconnexion</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar verticale desktop (toujours visible sur desktop) -->
+    <nav id="navbar" class="z-10 fixed flex flex-col h-full bg-[var(--bg_color_tertiary)] w-[15.1875rem] max-sm:hidden">
+        <div id="navContainer" class="flex flex-col mt-[25px] max-sm:gap-5">
+            <a href="/" class="ml-[30px] flex lg:w-36">
+                <img src="{% static 'neuroa_app/img/logo_ligne_beige_h40.png' %}" class="max-w-[150px]" alt="NoMask">
+            </a>
+            <hr class="unhide border-[#FBEFD9] border-t-[1px] mt-[24px] w-[175px] ml-[40px]">
+            <div id="user" class="flex items-center pl-[28px] w-[243px] h-[34px] mt-[24px] hover:bg-[#6553DF] group cursor-pointer">
+                <img id="userIcon" src="{% static 'neuroa_app/img/account-logo.svg' %}" alt="NoMask">
+                <p id="userText" class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Profil</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/add-logo.svg' %}" alt="Add logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Créer un job</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/work-logo.svg' %}" alt="Work logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Gérer mes jobs</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/search-logo.svg' %}" alt="Search logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Chercher un profil</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/docs-logo.svg' %}" alt="Docs logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Suivi des candidatures</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]"/>
+            </div>
+            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/bookmark-logo.svg' %}" alt="Bookmark logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Mes favoris</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+            <hr class="unhide border-[#FBEFD9] border-t-[1px] mt-[19px] w-[175px] ml-[40px]">
+            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] mt-[17px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/mail-logo.svg' %}" alt="Mail logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">adressemail@gmail.com</p>
+            </div>
+            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer max-sm:hidden">
+                <img src="{% static 'neuroa_app/img/shopping-logo.svg' %}" alt="Shopping logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Acheter des prestations</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px] "/>
+            </div>
+
+            </div>
+            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer relative">
+                <img src="{% static 'neuroa_app/img/euro-logo.svg' %}" alt="Euro logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Gérer mes abonnements</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block absolute right-[11px]" />
+            </div>
+
+            <hr class="unhide hrLogOut border-[#FBEFD9] border-t-[1px] mt-[19px] w-[175px] ml-[40px]">
+
+            <div class="unhide logOut flex items-center pl-[28px] w-[243px] h-[34px] mt-[17px] hover:bg-[#6553DF] group cursor-pointer">
+                <img src="{% static 'neuroa_app/img/cancel-logo.svg' %}" alt="Cancel logo">
+                <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Déconnexion</p>
+                <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
+            </div>
+
+        </div>
+
+    </nav>
+    
+    {% else %}
+    <nav class="z-10 fixed flex justify-between items-center w-full bg-[var(--bg_color_tertiary)] px-6 h-16 lg:pl-24 lg:pr-28">
+        <!-- Bloc gauche : logo + search bar -->
+        <div class="flex items-center gap-x-16">
+            <!-- logo -->
+            <a href="/" class="w-40 lg:w-36">
+                <img src="{% static 'neuroa_app/img/logo_ligne_beige_h40.png' %}" alt="NoMask">
+            </a>
+            <!-- search bar -->
+            {% if user.is_authenticated %}
+                <div class="hidden lg:flex text-center">
+                    {% include 'search-bar.html' %}
+                </div>
+            {% endif %}
+        </div>
+    
+        <div class="flex items-center gap-x-9">
+            {% if user.is_authenticated %}
+                <div id="userMenu" class="relative">
+                    <div class="flex flex-col items-center cursor-pointer">
+                        {% if user.photo %}
+                            <div class="h-8 w-8 lg:w-6 lg:h-6 rounded-full object-cover">
+                                <img src="{{ user.photo.url }}" alt="Photo de profil" class="w-full h-full rounded-full object-cover">
+                            </div>
+                        {% else %}
+                            <i class="fas fa-user-circle text-[var(--text_color_primary)] text-4xl md:text-2xl"></i>
+                        {% endif %}
+                        <p class="text-xs mt-1 text-[var(--text_color_primary)] hidden md:block lg:block">
+                            {{ user.first_name }}
+                        </p>
+                    </div>    
+                    <div id="userDropdown" class="absolute top-0 right-0 mt-[50px] flex-col gap-y-4 bg-[var(--bg_color_tertiary)] pb-5 pt-4 px-4 w-40 rounded-b hidden flex lg:mt-[54px] lg:right-[-102px]">
+                        <div class="m-auto bg-[var(--text_color_primary)] w-10/12 p-px"></div>
+                        <a href="{% url 'profile' %}" class="text-[var(--text_color_primary)] pt-0.5 hover:underline">Mon profil</a>
+                        <a href="{% url 'settings' %}" class="text-[var(--text_color_primary)] hover:underline">Paramètres</a>
+                        <a href="{% url 'application_monitoring' %}" class="text-[var(--text_color_primary)] hover:underline">Suivi des candidatures/favoris</a>
+                        <div class="m-auto bg-[var(--text_color_primary)] w-10/12 p-px"></div>
+                        <span class="closeSignUpModal flex items-center gap-x-2 cursor-pointer pt-0.5">
+                            <i class="fa-solid fa-circle-xmark text-[var(--text_color_primary)] text-base"></i>
+                            <a href="{% url 'logout' %}" class="text-[var(--text_color_primary)] hover:underline">Déconnexion</a>
+                        </span>
+                    </div>
+                </div>
+            {% else %}
+                <button class="text-[var(--text_color_primary)] text-sm px-4 py-2 border border-[var(--border_color_tertiary)] rounded">
+                    Accès recruteur
+                </button>
+                <div class="openSignUpModal flex flex-col items-center cursor-pointer group relative">
+                    <i class="fas fa-user-circle text-[var(--text_color_primary)] text-4xl md:text-2xl"></i>
+                    <span class="text-sm mt-0.5 text-[var(--text_color_primary)] group-hover:text-white hidden md:block lg:block">
+                        Se connecter
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+    
+    {% endif %}
+    
+  
+
+
+    {% block content %}{% endblock %}
+    {% if not user.is_authenticated %}
+        {% include 'signup_modal.html' %}
+    {% endif %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            {% if recruiter %}
+                // =======================
+                // Gestion du Drawer Sidebar Mobile (pour les recruteurs)
+                // =======================
+    
+                // Sélection des éléments du DOM liés à la sidebar mobile
+                const openBtn = document.getElementById("openSidebarBtn");      // bouton pour ouvrir la sidebar mobile (profil)
+                const sidebar = document.getElementById('mobileSidebar');       // la sidebar mobile elle-même
+                const closeBtn = document.getElementById('closeSidebarBtn');    // bouton pour fermer la sidebar mobile
+                const horizontalBar = document.getElementById('horizontalBar'); // la barre horizontale mobile (haut de page)
+    
+                // Fonction pour ouvrir la sidebar mobile
+                function openSidebar() {
+                    sidebar.classList.remove('-translate-x-full');    // affiche la sidebar (slide-in)
+                    sidebar.classList.add('translate-x-0');
+                    document.body.classList.add('overflow-hidden');   // empêche le scroll du body quand le menu est ouvert
+                    horizontalBar.classList.remove('translate-x-0');  // cache la barre horizontale
+                    horizontalBar.classList.add('-translate-x-full');
+                    closeBtn.classList.remove("max-sm:hidden");       // affiche le bouton de fermeture
+    
+                    // Ajoute un écouteur pour fermer la sidebar si on clique en dehors
+                    setTimeout(() => {
+                        document.addEventListener('click', closeSidebarOnClickOutside);
+                    }, 10);
+                }
+    
+                // Fonction pour fermer la sidebar mobile
+                function closeSidebar() {
+                    sidebar.classList.remove('translate-x-0');        // cache la sidebar (slide-out)
+                    sidebar.classList.add('-translate-x-full');
+                    document.body.classList.remove('overflow-hidden');// réactive le scroll du body
+                    document.removeEventListener('click', closeSidebarOnClickOutside);
+                    horizontalBar.classList.remove('max-sm:hidden');  // réaffiche la barre horizontale
+                    closeBtn.classList.add("max-sm:hidden");           // cache le bouton de fermeture
+    
+                    // Réaffiche la barre horizontale avec animation
+                    horizontalBar.classList.remove('-translate-x-full');
+                    horizontalBar.classList.add('translate-x-0')
+                }
+    
+                // Ferme la sidebar si l'utilisateur clique en dehors de celle-ci
+                function closeSidebarOnClickOutside(event) {
+                    if (
+                        sidebar.classList.contains('translate-x-0') &&
+                        !sidebar.contains(event.target) &&
+                        !openBtn.contains(event.target)
+                    ) {
+                        closeSidebar();
+                    }
+                }
+    
+                // Ouverture sidebar sur clic du bouton profil (icone user)
+                openBtn?.addEventListener('click', function (e) {
+                    e.stopPropagation(); // évite la propagation du clic pour ne pas fermer immédiatement la sidebar
+                    openSidebar();
+                });
+                // Fermeture sidebar sur clic du bouton "fermer"
+                closeBtn?.addEventListener('click', function () {
+                    closeSidebar();
+                });
+                // Empêche la fermeture quand on clique à l'intérieur de la sidebar
+                sidebar?.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                });
+                // =======================
+                // Fin gestion drawer sidebar
+                // =======================
+            {% endif %}
+    
+            {% if user.is_authenticated %}
+                // =======================
+                // Dropdown utilisateur (affichage menu profil/log out etc)
+                // =======================
+    
+                const userMenu = document.getElementById('userMenu');         // bouton/menu utilisateur
+                const userDropdown = document.getElementById('userDropdown'); // menu déroulant associé
+    
+                // Affiche ou cache le menu dropdown sur clic sur le menu utilisateur
+                userMenu?.addEventListener('click', function () {
+                    userDropdown.classList.toggle('hidden');
+                });
+    
+                // Ferme le menu dropdown si on clique à l'extérieur
+                document.addEventListener('click', function (event) {
+                    if (!userMenu.contains(event.target)) {
+                        userDropdown.classList.add('hidden');
+                    }
+                });
+    
+                // =======================
+                // Fin gestion dropdown utilisateur
+                // =======================
+            {% else %}
+                // =======================
+                // Gestion modale d'inscription/connexion pour les non connectés
+                // =======================
+    
+                const openSignUpModal = document.querySelectorAll('.openSignUpModal');  // boutons pour ouvrir la modale
+                const closeSignUpModal = document.querySelectorAll('.closeSignUpModal');// boutons pour fermer la modale
+                const signUpModal = document.getElementById('signUpModal');              // overlay de la modale
+                const modalContainer = document.getElementById('modalContainer');        // container animé de la modale
+                const cancelSignUp = document.querySelectorAll('.cancelSignUp');         // autres boutons pour fermer la modale
+    
+                // Ouvre la modale d'inscription/connexion
+                openSignUpModal.forEach((osum)=>{
+                    osum?.addEventListener('click', function () {
+                        signUpModal.classList.remove('hidden');          // affiche overlay
+                        setTimeout(() => {
+                            modalContainer.classList.remove('translate-x-full');
+                            modalContainer.classList.add('translate-x-0');// animation d'entrée
+                        }, 10);
+                    });
+                });
+    
+                // Ferme la modale d'inscription/connexion
+                const closeModal = function () {
+                    modalContainer.classList.remove('translate-x-0');
+                    modalContainer.classList.add('translate-x-full');    // animation de sortie
+                    setTimeout(() => {
+                        signUpModal.classList.add('hidden');             // cache overlay
+                    }, 300);
+                }
+    
+                closeSignUpModal.forEach((csum)=>{
+                    csum.addEventListener('click', closeModal);
+                });
+    
+                cancelSignUp.forEach((el) => {
+                    el.addEventListener('click', closeModal);
+                });
+    
+                // =======================
+                // Fin gestion modale inscription/connexion
+                // =======================
+            {% endif %}
+        });
+    </script>
+        
+
+  
+    {% block scripts %}{% endblock %}
+    {% load django_browser_reload %}
+    {% django_browser_reload_script %}
+</body>
+</html>

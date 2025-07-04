@@ -1,0 +1,68 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: docker
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_DB: ${{ secrets.DB_NAME }}
+          POSTGRES_USER: ${{ secrets.DB_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          POSTGRES_HOST_AUTH_METHOD: trust # Si nécessaire pour éviter des erreurs d'authentification
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v4
+      - name: Set environment variables
+        env:
+          DEBUG: ${{ vars.DEBUG }} # Utilisation de la variable DEBUG
+          DB_URL: ${{ secrets.DB_URL }} # Accès au secret DB_URL
+          DB_HOST: ${{ secrets.DB_HOST }} # Accès au secret DB_HOST
+          DB_PORT: ${{ secrets.DB_PORT }} # Accès au secret DB_PORT
+          SECRET_KEY: ${{ secrets.SECRET_KEY }} # Accès au secret SECRET_KEY
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run migrations
+        run: python manage.py migrate
+      - name: Run tests
+        run: python manage.py test
+      - name: Start Django server in background
+        run: |
+          nohup python manage.py runserver 0.0.0.0:8000 &
+      - name: Run Locust tests
+        run: locust --headless -f locustfile.py --host http://localhost:8000 -u 200 -r 5 --run-time 1m
+
+  frontend:
+    runs-on: docker
+    container:
+      image: node:14
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install
+      - name: Run tests
+        run: |
+          cd frontend
+          npm run test
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+
+  deploy:
+    needs: [build, frontend]
+    runs-on: docker
+    container:
+      image: alpine
+    steps:
+      - name: Deploy
+        run: echo "Déploiement en cours..."
+        # Ajouter ici les commandes de déploiement

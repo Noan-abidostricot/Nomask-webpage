@@ -1,0 +1,90 @@
+<div id="conditionList">
+    <div id="conditionContent"></div>
+    <label class="flex items-center mt-2 sm:mt-4">
+        <input
+            type="checkbox"
+            id="validateConditions"
+            class="mr-1 sm:mr-2 w-3 h-3 sm:w-4 sm:h-4"
+        />
+        <span class="text-xs sm:text-base">
+            J'accepte les conditions d'utilisation
+        </span>
+    </label>
+</div>
+
+<script>
+
+    function loadConditions() {
+        const conditionContent = document.getElementById('conditionContent');
+
+        fetch('{% url "condition" %}')
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0 && data[0].id !== null) {
+                // Regrouper les conditions par catégorie
+                const groupedConditions = data.reduce((acc, condition) => {
+                    if (!acc[condition.category]) {
+                        acc[condition.category] = {
+                            name: condition.category_name,
+                            conditions: []
+                        };
+                    }
+                    acc[condition.category].conditions.push(condition);
+                    return acc;
+                }, {});
+
+                // Générer le HTML pour chaque catégorie
+                const html = Object.values(groupedConditions).map(category => `
+                    <div class="mb-4 sm:mb-6">
+                        <h2 class="text-lg sm:text-xl font-roboto font-bold mb-2 sm:mb-3">${category.name}</h2>
+                        ${category.conditions.map(condition => `
+                            <div class="mb-2 sm:mb-4">
+                                <h3 class="text-base sm:text-lg font-roboto font-semibold mb-1 sm:mb-2">
+                                    ${condition.name}
+                                </h3>
+                                <p class="text-sm sm:text-base">
+                                    ${condition.body}
+                                </p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+
+                conditionContent.innerHTML = html;
+            } else {
+                conditionContent.innerHTML = `
+                    <p id="no-conditions" class="text-xs sm:text-sm text-gray-600">
+                        Aucune condition à afficher. Vous pouvez toujours vous inscrire.
+                    </p>
+                `;
+            }
+            document.getElementById('validateConditions').checked = window.isConditionsAccepted;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            conditionContent.innerHTML = `
+                <p class="text-red-500">
+                    Erreur lors du chargement des conditions.
+                </p>
+            `;
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const validateConditionsCheckbox = document.getElementById('validateConditions');
+
+        validateConditionsCheckbox.addEventListener('change', function(event) {
+            window.isConditionsAccepted = event.target.checked;
+            const signUpValidCheckbox = document.getElementById('signUpValidCheckbox');
+
+            if (signUpValidCheckbox) {
+                signUpValidCheckbox.checked = window.isConditionsAccepted;
+            }
+        });
+
+        validateConditionsCheckbox.checked = window.isConditionsAccepted;
+
+        loadConditions();
+    });
+</script>
+

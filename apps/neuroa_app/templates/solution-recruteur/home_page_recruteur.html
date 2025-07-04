@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="app" class="min-h-screen flex flex-col bg-[var(--bg_color_nonary)]">
+    <!-- HERO BANNER -->
+    <section class="pt-28 pb-16 px-9 flex flex-col-reverse items-center justify-center flex-wrap gap-y-7 gap-x-20 bg-[var(--bg_color_quinary)] border-b-2 border-[var(--border_color_quaternary)] lg:flex-row lg:pt-32">
+        <div class="max-w-[487px]">
+            <h1 class="">Favoriser la <span class="font-bold">neurodiversité</span> dans votre <span class="font-bold">entreprise</span></h1>
+            <p class="mt-5">Nous facilitons la mise en relation entre entreprise et candidat porteurs d’un handicap invisible. Notre travail : rendre visible l’invisible.</p>
+            <button class="button_large mt-8 mx-auto">S’inscrire</button>
+        </div>
+            <iframe class="shadow-lg w-full max-w-[308px] h-[170px] md:max-w-[500px] md:h-[270px] rounded-md" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=9DsitjX-e0Ur-TjB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+
+        <!-- SECTION PRESENTATION SOLUTION NOMASK -->
+        <section class="flex flex-col items-center justify-center flex-wrap gap-x-9 pt-7 px-9 lg:flex-row lg:pt-10">
+                <img class="w-[300px] h-full lg:w-[350px] hidden lg:block" src="{% static "neuroa_app/img/image-section-home-recruteur.svg" %}" alt="illustration d'une personne qui fait une presentation">
+                <div class="max-w-[600px]">
+                    <h2 class="text-center lg:text-left">Partes suscipitur otiosae et Pompiliani.</h2>
+                    <img class="w-[300px] mx-auto h-full lg:w-[350px] block pt-5 lg:pt-0 lg:hidden" src="{% static "neuroa_app/img/image-section-home-recruteur.svg" %}" alt="illustration d'une personne qui fait une presentation">
+                    <p class="pt-5">Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.
+                    <ul class="list-disc pl-8 pt-4">
+                        <li class="">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii vita oculos.</li>
+                        <li>Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii vita oculos.</li>
+                        <li>Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii vita oculos.</li>
+                        <li>Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii vita oculos.</li>
+                        <li>Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii vita oculos.</li>
+                    </ul>
+                </div>
+        </section>
+
+        <!-- SECTION CHOIX DE L'ABONNEMENT -->
+        <section class="mt-10 pl-6 py-9 bg-[var(--bg_color_quinary)] flex flex-col items-center border-b-2 border-[var(--border_color_quaternary)]">
+            <h2>Choix de l’abonnement</h2>
+            <h4 class="mt-2 text-center">
+                Le prix de l’abonnement est déterminé en fonction de l’effectif de votre entreprise
+            </h4>
+            <!-- container scrollable -->
+            <div class="mt-11 w-full overflow-x-auto pb-5">
+                <!-- container cards -->
+                <div class="flex justify-center gap-x-6 md:gap-x-12 min-w-max">
+                    <!-- CARD 1 -->
+                    <div class="bg-[var(--bg_color_octonary)] w-full max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center py-5 px-5">
+                        <img class="w-[168px] h-48 object-cover" src="{% static 'neuroa_app/img/image-section-abonnement-2-personnes.svg' %}" alt="illustration de deux personnes">
+                        <h4 class="h4_bold mt-5">- de 20 salariés</h4>
+                        <span class="mt-8 border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center">
+                        Gratuit
+                        </span>
+                    </div>
+                    <!-- CARD 2 -->
+                    <div class="bg-[var(--bg_color_octonary)] w-full max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center py-5 px-5">
+                        <img class="w-[168px] h-48 object-cover" src="{% static 'neuroa_app/img/image-section-abonnement-3-personnes.svg' %}" alt="illustration de trois personnes">
+                        <h4 class="h4_bold mt-5">Entre 20 et 49 salariés</h4>
+                        <span class="mt-8 border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center">
+                        30€ / mois
+                        </span>
+                    </div>
+                    <!-- CARD 3 -->
+                    <div class="bg-[var(--bg_color_octonary)] w-full max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center py-5 px-5">
+                        <img class="w-[168px] h-48 object-cover" src="{% static 'neuroa_app/img/image-section-abonnement-4-personnes.svg' %}" alt="illustration de quatre personnes">
+                        <h4 class="h4_bold mt-5">Entre 50 et 99 salariés</h4>
+                        <span class="mt-8 border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center">
+                        50€ / mois
+                        </span>
+                    </div>
+                    <!-- CARD 4 -->
+                    <div class="bg-[var(--bg_color_octonary)] w-full max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center py-5 px-5">
+                        <img class="w-[168px] h-48 object-cover" src="{% static 'neuroa_app/img/image-section-abonnement-5-personnes.svg' %}" alt="illustration de cinq personnes">
+                        <h4 class="h4_bold mt-5">+ de 100 salariés</h4>
+                        <span class="mt-8 border border-[var(--border_color_primary)] text-[var(--text_color_secondary)] rounded-full text-base w-52 h-9 font-roboto flex items-center justify-center">
+                            90€ / mois
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <button class="button_medium mt-9">Inscrivez-vous</button>
+        </section>
+        
+        <!-- SECTION NOS FORMATIONS -->
+        <section class="pt-10 pl-6 py-9 flex flex-col items-center">
+            <h2>Nos formations</h2>
+            <!-- container scrollable -->
+            <div class="mt-11 w-full overflow-x-auto pb-5">
+                <!-- container cards -->
+                <div class="flex justify-center gap-x-6 md:gap-x-20 min-w-max">
+                    <!-- card 1 -->
+                    <div class="bg-[var(--bg_color_octonary)] max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center pb-5 px-5">
+                        <img class="w-[160px] h-[160px] object-cover md:w-[254px] md:h-[254px]" src="{% static 'neuroa_app/img/image-section-nos-formations.svg' %}" alt="illustration de cinq personnes">
+                        <h4 class="h4_bold">In venerem uxoresque</h4>
+                        <div class="w-full max-w-[316px] mt-3.5	">
+                            <p class="p_interligne">Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi.</p>
+                            <ul class="list-disc pl-6 pt-3.5">
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- card 2 -->
+                    <div class="bg-[var(--bg_color_octonary)] max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center pb-5 px-5">
+                        <img class="w-[160px] h-[160px] object-cover md:w-[254px] md:h-[254px]" src="{% static 'neuroa_app/img/image-section-nos-formations.svg' %}" alt="illustration de cinq personnes">
+                        <h4 class="h4_bold">In venerem uxoresque</h4>
+                        <div class="w-full max-w-[316px] mt-3.5	">
+                            <p class="p_interligne">Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi.</p>
+                            <ul class="list-disc pl-6 pt-3.5">
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- card 3 -->
+                    <div class="bg-[var(--bg_color_octonary)] max-w-[235px] md:max-w-[260px] rounded-md shadow-2xl flex flex-col items-center pb-5 px-5">
+                        <img class="w-[160px] h-[160px] object-cover md:w-[254px] md:h-[254px]" src="{% static 'neuroa_app/img/image-section-nos-formations.svg' %}" alt="illustration de cinq personnes">
+                        <h4 class="h4_bold">In venerem uxoresque</h4>
+                        <div class="w-full max-w-[316px] mt-3.5	">
+                            <p class="p_interligne">Hoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi.</p>
+                            <ul class="list-disc pl-6 pt-3.5">
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                                <li class="p_interligne">Aut sed de amicis rectum rectum communis qui sapientiam de aut de vitii.</li>
+                            </ul>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <button class="button_medium mt-9">Accédez aux formations</button>
+        </section>
+
+        <!-- SECTION ELLES RECRUTENT -->
+     <section class="bg-[var(--bg_color_senary)] mt-5 py-8 md:pb-10 md:pt-6 px-[52px] lg:px-[103px] lg:flex lg:flex-col lg:items-center">
+      <h2 class="text-center">Elles recrutent sur NoMask</h2>
+      <div class="flex items-center justify-center mt-9 md:mt-7"> 
+          <!-- icon left -->
+           <span class="hidden xl:block">
+             <i class="fa-solid fa-chevron-left text-lg text-[var(--text_color_secondary)] cursor-pointer hover:scale-125 duration-75 lg:mr-4"></i>
+           </span>
+          <!-- container les cards -->
+          <div class="w-full flex flex-col items-center overflow-x-auto pb-5 gap-y-6 md:flex-row md:gap-x-8 md:gap-y-0">
+              <!-- card -->
+              <a href="#" class="w-full flex flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52">
+                  <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+                  <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+              </a>
+               <!-- card -->
+               <a href="#" class="w-full flex flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52">
+                <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+                <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+            </a>
+             <!-- card -->
+             <a href="#" class="w-full flex flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52">
+              <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+              <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+          </a>
+           <!-- card -->
+           <a href="#" class="hidden w-full flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52 md:flex ">
+            <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+            <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+        </a>
+         <!-- card -->
+         <a href="#" class="hidden w-full flex-col items-center bg-[var(--bg_color_octonary)] shadow-lg hover:bg-[var(--bg_color_duodenary)] duration-200 rounded-md py-4 md:py-3 px-8 md:max-w-52 md:flex ">
+          <img class="w-20 h-full max-w-32" src="{% static "neuroa_app/img/logo-ille-vilaine.png" %}" alt="logo ille et vilaine">
+          <h4 class="w-full md:w-28 text-center mt-2.5">Conseil d’Ille et Vilaine</h4>
+      </a>
+          <!-- icon right -->
+           <span class="hidden xl:block">
+             <i class="fa-solid fa-chevron-right text-lg text-[var(--text_color_secondary)] -ml-4 cursor-pointer hover:scale-125 duration-75"></i>
+           </span>
+      </div>
+  </section>
+            
+        </div>
+        {% endblock %}

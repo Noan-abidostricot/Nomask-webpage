@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% block scripts %}
+
+{% endblock %}
+  <!-- Main : prend tout l'espace dispo -->
+  <main class="flex flex-col w-[65vw] h-[93vh] pb-10 ml-[21vw] justify-center items-center text-center lg:ml-[30vw] md:ml-[40vw] md:w-[50vw] sm:ml-[40vw] sm:w-[50vw]">
+    <h1 class="w-full max-w-2xl text-xl md:text-3xl lg:text-4xl font-manrope leading-tight">
+        <span class="font-bold">Commencez</span> dès <br>
+        maintenant à créer un <span class="font-bold">job</span>
+    </h1>
+
+    
+    <img src="{% static 'neuroa_app/img/Search-illustration-1.svg' %}"  alt="">
+  
+
+    <button class="bg-[#A63FF0] w-full max-w-[300px] min-h-[40px] rounded-[30px] flex items-center justify-center text-white gap-[5px] hover:bg-[#C080F7] cursor-pointer">
+        Créer un job
+        <img src="{% static 'neuroa_app/img/add-logo.svg' %}" alt="">
+    </button>
+  </main>
+
+  <!-- Footer toujours collé en bas -->
+  <footer class="max-h-[5vh] w-full flex flex-col ">
+    <hr class="h-2.5 w-full border-[#6C757D80] max-lg:mb-1">
+
+    <div class="flex flex-row ml-[239px] justify-center items-center max-lg:flex-col max-sm:flex-col max-sm:ml-0 ">
+      <section class="flex flex-row gap-[15px] max-lg:flex-col max-sm:flex-col">
+        <section class="font-roboto text-[12px] text-[#27035F] flex gap-[15px]">
+          <a href="#">Contactez nous</a>
+          <a href="#">FAQ</a>
+          <a href="#">Ressources</a>
+          <a href="#">Tarifs</a>
+        </section>
+
+        
+        
+        <p class="font-roboto text-[#000000] mt-[-1px] max-lg:hidden">-</p>
+        
+        <section class="font-roboto text-[12px] text-[#27035F] flex gap-[15px]">
+          <a href="#">CGU</a>
+          <a href="#">Mentions Légales</a>
+          <a href="#">Politiques Cookies</a>
+        </section>
+      <section/>
+    
+      <section class="ml-[16px] flex gap-[14px] mt-[-1px] max-lg:mt-1 max-lg:ml-[40px]">
+        <a href="https://fr.linkedin.com"> <img src="{% static 'neuroa_app/img/linkedin.png' %}"" alt=""></a>
+        <a href="https://www.youtube.com/"> <img src="{% static 'neuroa_app/img/youtube.png' %}"" alt=""></a>
+        <a href="https://fr-fr.facebook.com"> <img src="{% static 'neuroa_app/img/facebook.png' %}"" alt=""></a>
+        <a href="https://www.instagram.com/"> <img src="{% static 'neuroa_app/img/instagram.png' %}"" alt=""></a>
+      </section>
+    </div>
+  </footer>
+
+  
+{% endblock %}

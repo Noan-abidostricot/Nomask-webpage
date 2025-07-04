@@ -1,0 +1,51 @@
+{% load static %}
+
+{% block content %}
+{% csrf_token %}
+<!-- CONTAINER JOB CARD -->
+<div class="job_card border border-[var(--border_color_primary)] rounded-md hover:bg-[var(--bg_color_hover_quaternary)] transition transform hover:scale-101 duration-200 mt-10 max-w-[994px] w-full py-3.5 px-5 ">
+        <!-- container image + nom de l'entreprise -->
+        <div class="flex items-center gap-x-4">
+            <img class="w-[45px] h-full rounded" src="{% static "neuroa_app/img/logo-imts.webp" %}" alt="illustration de personnes qui cherchent avec des loupes sur un écran">
+            <div class="company_name"><a href="{{ job_offer.company.url }}" target="_blank" class="leading-normal text-lg font-manrope font-normal text-[var(--text_color_nonary)]">{{ job_offer.company.name }}</a></div>
+        </div>
+        <!-- type d'offre -->
+        <a href="{% url 'job_offer' job_offer.id %}" class=" mt-0.5 leading-normal font-manrope font-normal text-[var(--text_color_secondary)] text-xl lg:text-2xl">{{ job_offer.name }}</a>
+        <!-- lieu de l'offre -->
+        <div class="location flex items-center gap-x-1.5 mt-4">
+            <i class="fas fa-location-dot text-[var(--text_color_secondary)] text-base"></i>
+            <p>{{ job_offer.city }}</p>
+        </div>
+        <!-- container tag + candidature envoyé + date + fav -->
+        <div class="flex flex-col justify-between md:items-end md:flex-row">
+            <!-- container tags -->
+            <div class="pills flex items-center gap-x-3 mt-5	">
+                {% for contract_type in job_offer.get_contract_types_list %}
+                <span class="pill tag">{{ contract_type }}</span>
+                {% endfor %}
+                
+                {% for remote in job_offer.get_remotes_list %}
+                <span class="pill tag">{{ remote }}</span>
+                {% endfor %}
+            </div>
+            <!-- container candidature envoyé + date + button favoris -->
+            <div class="actions flex items-center justify-end gap-x-6 mt-6 md:mt-0">
+                {% if job_offer.id in applied_ids %}
+                <span class="btn cursor-not-allowed flex items-center justify-center gap-x-1.5 text-sm font-roboto rounded-md border border-[var(--border_color_senary)] text-[var(--text_color_senary)] py-1 px-2.5">Candidature envoyée <i class="fas fa-check-circle"></i></span>
+                {% else %}
+                <p class="pub_date text-[var(--text_color_quaternary)] flex items-center gap-x-2" title="Date de publication"><i class="fa fa-calendar-days text-[var(--text_color_quaternary)] text-base"></i> {{ job_offer.publication_date|date }}</p>
+                <button class="bookmark_btn text-[var(--text_color_nonary)] text-2xl hover:text-[var(--bg_color_hover_primary)] transition transform hover:scale-110 duration-75 cursor-pointer"
+                data-offer-id="{{ job_offer.id }}"
+                data-is-favorite="{% if job_offer.id in favorite_ids %}True{% else %}False{% endif %}"
+                title="{% if job_offer.id in favorite_ids %}Retirer des favoris{% else %}Sauvegarder cette annonce{% endif %}">
+                <i class="fa-{% if job_offer.id in favorite_ids %}solid{% else %}regular{% endif %} fa-bookmark"></i>
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'neuroa_app/js/job_card.js' %}"></script>
+{% endblock %}

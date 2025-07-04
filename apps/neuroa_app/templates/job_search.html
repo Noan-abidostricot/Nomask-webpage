@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+<div id="app" class="bg-[var(--bg_color_nonary)]">
+    <!-- SECTION JOB SEARCH -->
+    <section class="bg-[var(--bg_color_quinary)] border-b-2 border-[var(--border_color_quaternary)] flex flex-col justify-center items-center pb-10 pt-18 px-[52px] lg:px-[103px]">
+        <!-- container titre de la page + image -->
+        <div class="flex flex-col-reverse justify-center items-center lg:flex-row lg:gap-x-12">
+            <h1 class="hidden lg:block"><span class="font-bold">Trouvez</span><br>le <span class="font-bold">job</span> qui<br>vous <span class="font-bold">correspond</span></h1>
+            <h1 class="lg:hidden"><span class="font-bold">Trouvez</span> le <span class="font-bold">job</span> qui<br>vous <span class="font-bold">correspond</span></h1>
+            <img class="w-[196px] h-full lg:w-[250px]" src="{% static "neuroa_app/img/image-section-search-job.svg" %}" alt="illustration de personnes qui cherchent avec des loupes sur un écran">
+        </div>
+        <form action="{% url "job_search" %}" method="post" class="flex flex-col gap-y-5 pt-2 lg:">
+            {% csrf_token %}
+            <!-- container inputs -->
+            <div class="flex flex-col items-center gap-y-5 mt-6 lg:mt-0 lg:gap-y-0 lg:gap-x-5 lg:flex-row">
+                <!-- input type d'offre -->
+                <span class="border border-[var(--border_color_primary)] w-fit rounded-full pl-3 flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass text-base text-[var(--text_color_quaternary)] pl-1"></i>
+                    <input type="text" id="search_criteria" value="{{ search_criteria|default_if_none:"" }}" name="search_criteria" class="input_large" placeholder="Quel job ?">
+                </span>
+                <!-- input lieu -->
+                <span class="border border-[var(--border_color_primary)] w-fit rounded-full pl-3 flex items-center justify-center">
+                    <i class="fa-solid fa-location-dot text-base text-[var(--text_color_quaternary)] pl-1"></i>
+                    <input type="text" id="search_location" value="{{ search_location|default_if_none:"" }}" name="search_location" class="input_large" placeholder="Où ?">
+                </span>
+                <!-- input teletravail -->
+                <span class="border border-[var(--border_color_primary)] w-fit rounded-full pl-3 flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-building-user text-base text-[var(--text_color_quaternary)] pl-1"></i>
+                    <select name="search_remote" id="search_remote" class="input_large">
+                        <option class="placehoder" value="" {% if not search_remote %}selected{% endif %}>Télétravail</option>
+                        {% for remote in remotes %}
+                        <option value="{{ remote.0 }}" {% if search_remote == remote.0 %}selected{% endif %}>{{ remote.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </span>
+            </div>
+            <!-- container inputs -->
+            <div class="flex flex-col items-center gap-y-5 lg:gap-y-0 lg:gap-x-5 lg:flex-row">
+                <!-- input type de contrat -->
+                <span class="border border-[var(--border_color_primary)] w-fit rounded-full pl-3 flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-briefcase text-base text-[var(--text_color_quaternary)] pl-1"></i>
+                    <select name="search_contract_type" id="search_contract_type" class="input_large">
+                        <option class="placehoder" value="" {% if not search_contract_type %}selected{% endif %}>Type de contrat</option>
+                        {% for contract_type in contract_types %}
+                        <option value="{{ contract_type.0 }}" {% if search_contract_type == contract_type.0 %}selected{% endif %}>{{ contract_type.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </span>
+                <!-- input dates de l'annonce -->
+                <span class="border border-[var(--border_color_primary)] w-fit rounded-full pl-3 flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-file-lines text-base text-[var(--text_color_quaternary)] pl-1"></i>
+                    <select name="search_period" id="search_period" class="input_large">
+                        <option class="placehoder" value="" {% if not search_period %}selected{% endif %}>Dates de l’annonce</option>
+                        {% for period in periods %}
+                        <option value="{{ period.0 }}" {% if search_period == period.0 %}selected{% endif %}>{{ period.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </span>
+                <!-- button mes favoris -->
+                <button id="favorites-filter"
+                class="w-[350px] h-10 pl-3 text-sm font-roboto rounded-md bg-[var(--bg_color_secondary)] text-[var(--text_color_tertiary)] hover:bg-[var(--bg_color_hover_secondary)] transition transform hover:scale-105 duration-200 cursor-pointer lg:w-80 {% if favorites_only %}active{% endif %}"
+                data-active="{{ favorites_only|yesno:"true,false" }}">
+                <i class="fa-{% if favorites_only %}solid{% else %}regular{% endif %} fa-bookmark text-base text-[var(--text_color_tertiary)] pr-2"></i>
+                Mes favoris
+            </button>
+        </div>
+        <!-- container buttons rechercher + annuler -->
+                <div class="flex items-center justify-center">
+                    <button class="w-[350px] h-10 rounded-full bg-[var(--bg_color_primary)] text-[var(--text_color_tertiary)] cursor-pointer text-base font-roboto flex items-center justify-center hover:bg-[var(--bg_color_hover_primary)] transition transform hover:scale-105 duration-200 lg:w-80 flex items-center gap-x-3"><i class="fas fa-magnifying-glass text-base text-[var(--text_color_tertiary)]"></i> Rechercher</button>
+                </div>
+        </form>
+    </section>
+
+    <section class="bg-[var(--bg_color_nonary)] flex flex-col justify-center items-center pb-10 pt-14 mx-[52px] lg:mx-[103px]">
+        {% if search_criteria %}
+            <h2>{{ job_offers.count }} résultat{{ job_offers.count|pluralize }} pour "{{ search_criteria }}"{% if search_location %} à {{ search_location|title }}{% endif %}</h2>
+        {% else %}
+            <h2>Toutes les offres <small><em>({{ job_offers.count }} offre{{ job_offers.count|pluralize }})</em></small></h2>
+        {% endif %}
+        
+        {% for job_offer in job_offers %}
+            {% include 'job_card.html' with job_offer=job_offer %}
+        {% empty %}
+            <p class="no_results">Il n'y a aucun résultat pour ces critères de recherche.</p>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'neuroa_app/js/job_search.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.csrf_token = '{{ csrf_token }}';
+            init();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,43 @@
+[project]
+name = "nomask_mvp"
+version = "0.1.0"
+description = "NoMask Recruitment Platform MVP"
+authors = [
+    { name = "Basile Lucena Da Silva"}
+]
+
+requires-python = ">= 3.12"
+readme = "README.md"
+
+dependencies = [
+    "django==5.1.6",
+    "dj-database-url==2.3.0",
+    "dj-config-url==0.1.1",
+    "djangorestframework==3.15.2",
+    "pytest==8.3.4",
+    "pytest-django==4.9.0",
+    "django-tailwind-cli>=4.2.0",
+    "django-tailwind==3.8.0",
+    "python-dotenv==1.0.1",
+    "pillow==11.1.0",
+    "django-multiselectfield==0.1.13",
+    "django-prose-editor==0.10.4",
+    "django-browser-reload",
+]
+
+[dependency-groups]
+dev = [
+    "bpython>=0.25 ; sys_platform == 'darwin' or sys_platform == 'linux'",
+    "ipython>=8.32.0 ; sys_platform == 'win32'",
+    "django-debug-toolbar>=5.0.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
