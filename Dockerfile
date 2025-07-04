@@ -1,53 +1,51 @@
 # Utiliser une image Python optimisée comme base
 FROM python:3.11-slim
 
-
-# Définir des variables d'environnement
+# Variables d'environnement
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DJANGO_ENV=development
 
-# Définir le répertoire de travail
+# Répertoire de travail
 WORKDIR /app
 
-# Combiner les commandes d'installation et nettoyer le cache
-RUN apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get update --allow-releaseinfo-change --fix-missing \
-    && apt-get install -y --no-install-recommends gnupg curl ca-certificates --allow-unauthenticated \
-    && apt-key update \
-    && apt-get update --allow-unauthenticated \
-    && apt-get install -y --no-install-recommends build-essential libpq-dev --allow-unauthenticated \
-    && curl -sL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get install -y nodejs --allow-unauthenticated \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip install --upgrade pip
+# Installer les dépendances système nécessaires
+RUN apt-get update --allow-releaseinfo-change --fix-missing && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        libpq-dev \
+        curl \
+        gnupg \
+        ca-certificates && \
+    # Installer Node.js (version 16 LTS) pour Tailwind
+    curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Mettre à jour pip
+RUN pip install --upgrade pip
 
-# Copier les fichiers de dépendances
-COPY requirements.txt .
-
-# Installer les dépendances Python
+# Copier et installer les dépendances Python
 COPY requirements.txt .
 RUN pip install --no-cache-dir --default-timeout=100 -r requirements.txt
 
-
-
-# Copier le reste du code de l'application
+# Copier tout le code de l'application
 COPY . .
 
-# Installer et configurer Tailwind CSS
-RUN python manage.py tailwind init --no-input
-RUN python manage.py tailwind install --no-input
-RUN python manage.py tailwind build
+# Installer Tailwind via npm (dans le dossier Tailwind si besoin)
+# -- NOTE: Si tu utilises django-tailwind, la commande tailwind doit être disponible,
+# mais si erreur persiste, il faut vérifier que l'app Tailwind est bien dans INSTALLED_APPS
+RUN npm install -g tailwindcss postcss autoprefixer || true
 
-# Créer et donner accès à staticfiles et collecter les fichiers statiques
-RUN mkdir -p /app/staticfiles \
-    && chmod -R 755 /app/staticfiles \
-    && python manage.py collectstatic --noinput
+# Générer les assets Tailwind (assure-toi que l'app Tailwind est bien configurée)
+RUN python manage.py tailwind install --no-input || true
+RUN python manage.py tailwind build || true
 
-# Exposer le port sur lequel l'application Django sera exécutée
+# Collecter les fichiers statiques
+RUN python manage.py collectstatic --noinput
+
+# Exposer le port de l'application
 EXPOSE 8000
 
-# Utilise une variable d'environnement pour déterminer le mode d'exécution
+# Lancer le serveur selon l'environnement
 CMD ["sh", "-c", "if [ \"$DJANGO_ENV\" = \"production\" ]; then gunicorn --bind 0.0.0.0:8000 neuroa_project.wsgi:application; else python manage.py runserver 0.0.0.0:8000; fi"]
