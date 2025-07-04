@@ -1,7 +1,0 @@
-<form action="{% url "job_search" %}" method="post">
-    {% csrf_token %}
-    <div class="flex items-center justify-between">
-            <input type="text" id="search_criteria" value="{{ search_criteria|default_if_none:"" }}" name="search_criteria" class="bg-[var(--bg_color_quaternary)] w-60 h-8 rounded-l-full text-xs pl-3.5 placeholder-[var(--text_color_quinary)] outline-none" placeholder="Rechercher un job...">
-            <button class="bg-[var(--bg_color_quaternary)] h-8 px-2 rounded-r-full flex items-center justify-center"><i class="fa-solid fa-magnifying-glass text-sm border-l border-[var(--border_color_primary)] pl-1.5 text-[var(--text_color_quinary)]"></i></button>
-    </div>
-</form>                                  
