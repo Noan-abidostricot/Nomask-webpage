@@ -178,7 +178,10 @@
 }
 
 </style>
+
+
 <body class="min-h-screen flex flex-col bg-[var(--bg_color_nonary)] ">
+    
     <!-- NAV BAR -->
     {% if recruiter %}
     <!-- Barre horizontale mobile (toujours visible sur mobile) -->
@@ -209,23 +212,24 @@
 
             <hr class="unhide hrLogOut  border-[#FBEFD9] border-t-[1px] mt-[19px] w-[288px] ml-[40px]">
 
-            <div class="flex ml-[40px] items-center max-sm:w-[288px] pl-8 h-[34px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+            <a  class="flex ml-[40px] items-center max-sm:w-[288px] pl-8 h-[34px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/account-logo.svg' %}" alt="Add logo">
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Profil
                 </p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
-            </div>
+            </a>
 
-            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+            <a href="{% url 'create_job' %}" class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/add-logo.svg' %}" alt="Add logo">
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Créer un job</p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
-            </div>
-            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+            </a>
+            
+            <a href="{% url 'gerer_mes_job_dashboard' %}" class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/work-logo.svg' %}" alt="Work logo">
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Gérer mes jobs</p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
-            </div>
+            </a>
             <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/search-logo.svg' %}" alt="Search logo">
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Chercher un profil</p>
@@ -236,11 +240,11 @@
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Suivi des candidatures</p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
             </div>
-            <div class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
+            <a href="{% url 'mes_favoris' %}" class="flex ml-[40px] items-center pl-8 h-[34px] w-[288px] rounded-[6px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/bookmark-logo.svg' %}" alt="Bookmark logo">
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-2">Mes favoris</p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hidden group-hover:block ml-auto mr-[11px]" />
-            </div>
+            </a>
 
             <hr class="unhide hrLogOut  border-[#FBEFD9] border-t-[1px] mt-[19px] w-[288px] ml-[40px]">
 
@@ -268,7 +272,7 @@
     </nav>
 
     <!-- Sidebar verticale desktop (toujours visible sur desktop) -->
-    <nav id="navbar" class="z-10 fixed flex flex-col h-full bg-[var(--bg_color_tertiary)] w-[15.1875rem] max-sm:hidden">
+    <nav id="navbar" class="z-10 fixed flex flex-col h-full bg-[var(--bg_color_tertiary)] w-[15.1875rem] max-sm:hidden">q
         <div id="navContainer" class="flex flex-col mt-[25px] max-sm:gap-5">
             <a href="/" class="ml-[30px] flex lg:w-36">
                 <img src="{% static 'neuroa_app/img/logo_ligne_beige_h40.png' %}" class="max-w-[150px]" alt="NoMask">
@@ -279,16 +283,18 @@
                 <p id="userText" class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Profil</p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]" />
             </div>
-            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
+            <a href="{% url 'create_job' %}" class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/add-logo.svg' %}" alt="Add logo">
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Créer un job</p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]" />
-            </div>
-            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
+            </a>
+
+            <a href="{% url 'gerer_mes_job_dashboard' %}"  class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/work-logo.svg' %}" alt="Work logo">
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Gérer mes jobs</p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]" />
-            </div>
+            </a>
+
             <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/search-logo.svg' %}" alt="Search logo">
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Chercher un profil</p>
@@ -299,11 +305,11 @@
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Suivi des candidatures</p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]"/>
             </div>
-            <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
+            <a href="{% url 'mes_favoris' %}"  class="unhide flex items-center pl-[28px] w-[243px] h-[34px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/bookmark-logo.svg' %}" alt="Bookmark logo">
                 <p class="font-[Roboto] text-[14px] text-[#FBEFD9] ml-[5px]">Mes favoris</p>
                 <img src="{% static 'neuroa_app/img/arrow-logo.svg' %}" alt="Arrow logo" class="hoverShow hidden group-hover:block ml-auto mr-[11px]" />
-            </div>
+            </a>
             <hr class="unhide border-[#FBEFD9] border-t-[1px] mt-[19px] w-[175px] ml-[40px]">
             <div class="unhide flex items-center pl-[28px] w-[243px] h-[34px] mt-[17px] hover:bg-[#6553DF] group cursor-pointer">
                 <img src="{% static 'neuroa_app/img/mail-logo.svg' %}" alt="Mail logo">
@@ -392,14 +398,17 @@
     </nav>
     
     {% endif %}
-    
+    {# C’est ici que Django va injecter le contenu de vos templates enfants #}
+    {% block content %}
+    {% endblock content %}
   
 
-
-    {% block content %}{% endblock %}
+    
     {% if not user.is_authenticated %}
-        {% include 'signup_modal.html' %}
+        {# {% include 'signup_modal.html' %} #}
     {% endif %}
+    
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             {% if recruiter %}

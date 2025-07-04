@@ -1,8 +1,9 @@
 from . import views
 from django.urls import path
+from django.shortcuts import redirect
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', lambda request: redirect('create_job'), name='home'),
     path('settings/', views.settings, name='settings'),
     path('profile/', views.profile, name='profile'),
 

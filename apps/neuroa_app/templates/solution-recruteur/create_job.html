@@ -1,10 +1,9 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
-{% block content %}
-{% block scripts %}
+{% block extra_head %}{% endblock extra_head %}
 
-{% endblock %}
+{% block content %}
   <!-- Main : prend tout l'espace dispo -->
   <main class="flex flex-col w-[65vw] h-[93vh] pb-10 ml-[21vw] justify-center items-center text-center lg:ml-[30vw] md:ml-[40vw] md:w-[50vw] sm:ml-[40vw] sm:w-[50vw]">
     <h1 class="w-full max-w-2xl text-xl md:text-3xl lg:text-4xl font-manrope leading-tight">
@@ -15,11 +14,11 @@
     
     <img src="{% static 'neuroa_app/img/Search-illustration-1.svg' %}"  alt="">
   
-
-    <button class="bg-[#A63FF0] w-full max-w-[300px] min-h-[40px] rounded-[30px] flex items-center justify-center text-white gap-[5px] hover:bg-[#C080F7] cursor-pointer">
+    
+     <a href="{% url 'job_create_form' %}" class="block bg-[#A63FF0] w-full max-w-[300px] min-h-[40px] rounded-[30px] flex items-center justify-center text-white gap-[5px] hover:bg-[#C080F7]">
         Créer un job
-        <img src="{% static 'neuroa_app/img/add-logo.svg' %}" alt="">
-    </button>
+       <img src="{% static 'neuroa_app/img/add-logo.svg' %}" alt="">
+     </a>
   </main>
 
   <!-- Footer toujours collé en bas -->
@@ -56,4 +55,6 @@
   </footer>
 
   
-{% endblock %}
+  {% endblock content %}
+
+  {% block scripts %}{% endblock scripts %}
