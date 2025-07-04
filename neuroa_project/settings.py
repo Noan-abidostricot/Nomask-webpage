@@ -21,7 +21,7 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ["nomask-webpage.onrender.com", "localhost", "127.0.0.1"]
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -35,7 +35,8 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
 
-ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '.nomask.fr,.nomask.pro,.nomask.eu,localhost,127.0.0.1,web').split(',')]
+
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'nomask-webpage.onrender.com,.nomask.fr,.nomask.pro,.nomask.eu,localhost,127.0.0.1,web').split(',')]
 
 # Application definition
 
