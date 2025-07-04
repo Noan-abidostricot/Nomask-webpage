@@ -175,4 +175,4 @@ node_modules/
 uv.lock
 
 #Users uploads
-media/
+media/.django_tailwind_cli/*.exe
