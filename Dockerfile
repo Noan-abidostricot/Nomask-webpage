@@ -1,5 +1,6 @@
 # Utiliser une image Python optimisée comme base
-FROM python:3.9-bullseye
+FROM python:3.11-slim
+
 
 # Définir des variables d'environnement
 ENV PYTHONDONTWRITEBYTECODE=1 \
