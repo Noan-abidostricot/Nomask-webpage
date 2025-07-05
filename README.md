@@ -1,141 +1,72 @@
-# NoMask - Recruitment Platform
+<h1 align="center">🧠 NoMask - Frontend</h1>
+<p align="center">
+  <strong>Interface web inclusive pour une plateforme de recrutement éthique</strong><br>
+  <em>Développée en stage par Lylais</em>
+</p>
 
-This project is the MVP version NoMask recruitment platform, developed with Django (back-end) and Vue.js (front-end), virtualized with venv and uv for dependencies management.
+<p align="center">
+  <a href="https://nomask-webpage.onrender.com/create-job/" target="_blank">
+    <img src="https://img.shields.io/badge/Démo-en_ligne-brightgreen" alt="Démo en ligne" />
+  </a>
+  &nbsp;
+  &nbsp;
+  <img src="https://img.shields.io/badge/Technologies-HTML%20|%20JavaScript%20|%20Tailwind-blue" alt="Technologies" />
+</p>
 
-## Prerequisites
+---
 
-- Python
-- venv/uv
+## 🎓 Projet réalisé en stage
 
-## SSH authentication with repository (if you're part of the 'institutsolacroup' organization)
+Ce dépôt contient **l’interface front-end** de la plateforme **NoMask**, conçue pendant un **stage professionnel**.  
+Le but était de développer une interface web **accessible**, **sobre** et **intuitive**, pensée pour des utilisateurs neuroatypiques ou en situation de handicap.
 
-1. Generate new Ed25519 key:
+> 💡 Technologies utilisées : HTML, JavaScript, Tailwind CSS, avec quelques intégrations Django.
 
-ssh-keygen -t ed25519 -C "votre_email@exemple.com"
+---
 
-2. Start SSH authentication service if it isn't yet:
+## 🎯 Objectifs du projet
 
-eval `ssh-agent -s`
+- 💼 Faciliter la création et la visualisation d’offres d’emploi  
+- 🧠 Créer une interface claire, accessible, pensée pour tous les profils cognitifs  
+- 🔗 Connecter l’interface à un back-end Django (déjà existant)  
+- 🧩 Mettre en avant des bonnes pratiques d’accessibilité (structure, contrastes, responsive)  
 
-3. Add this new key to SSH agent:
+        ---
 
-ssh-add ~/.ssh/id_ed25519
+## 🚀 Accéder à la démo
 
-4. Display and copy the public key
+> 🌐 Lien direct :  
+👉 **[https://nomask-webpage.onrender.com/create-job/](https://nomask-webpage.onrender.com/create-job/)**
 
-cat ~/.ssh/id_ed25519.pub
+Tu peux y tester la création d’une offre d’emploi via un formulaire simple, clair et réactif.
 
-5. Add it to your codeberg account in your account setting/SSH/GPG Keys section
+---
 
-Click on "Add key" for Manage SSH Keys
-Paste the key on the "Content" section
+## 🛠️ Technologies utilisées
 
-6. Clone the repository:
+| Technologie    | Description                          |
+|----------------|------------------------------------|
+| 🧩 HTML5        | Structure des pages                |
+| 🎨 Tailwind CSS | Mise en page moderne et responsive |
+| ⚙️ JavaScript   | Logique d’interaction côté client  |
+| 🌐 Django       | Intégration minimale (templating/API) |
 
-git clone git@codeberg.org:institutsolacroup/neuroa_mvp.git
 
-## Access token authentication (if you're not part of the 'institutsolacroup' organization)
+## 🙋‍♀️ À propos
 
-1. Ask us for an access token
+Projet front-end développé par **Lylais**  
+📍 Réalisé dans le cadre d’un **stage de développement web**  
+📬 Contact : [noan.abidostricot@proton.me](mailto:noan.abidostricot@proton.me)
 
-2. Configure the credentials manager to safe store the token
+---
 
-git config --global credential.helper store
+## 📜 Licence
+    
+Projet sous licence **MIT** — libre à utiliser, modifier et partager.
 
-3. Use it to clone the repository and start working on it
+---
 
-git clone https://codeberg.org/institutsolacroup/neuroa_mvp.git
+## 💙 Remerciements
 
-## Installation and Setup
-
-1. Browse to the project directory
-
-cd neuroa_mvp
-
-2. Create environment files:
-
-a. If it doesn't exist create a `.env` file at the root of the project with the following variables:
-
-SECRET_KEY=your_secret_key
-DEBUG=True
-DB_NAME=your_db_name
-DB_USER=your_user
-DB_PASSWORD=your_password
-DB_HOST=your_host
-DB_PORT=5432
-DB_URL=postgres://your_user:your_password@your_host:5432/your_db_name
-DJANGO_ENV=development
-ALLOWED_HOSTS=.nomask.fr,.nomask.pro,.nomask.eu,localhost,127.0.0.1,web
-CSRF_TRUSTED_ORIGINS=https://nomask.fr,https://nomask.pro,https://nomask.eu,http://localhost:8080,http://localhost:8000,http://web:8000
-EMAIL_HOST=your_host
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-EMAIL_HOST_USER=your_user
-EMAIL_HOST_PASSWORD=your_password
-
-b. If it doesn't exist create a `.env` file in the `frontend` directory:
-
-VUE_APP_API_URL=http://localhost:8000
-
-3. Create an `init.sql` file at the root of the project:
-
-CREATE USER your_user WITH PASSWORD 'your_password';
-CREATE DATABASE your_db_name;
-GRANT ALL PRIVILEGES ON DATABASE your_db_name TO your_user;
-
-4. For local development install and run uv for dependencies in virtual environment (dependencies edit in "pyproject.toml"):
-
-a. Install:
-
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-
-b. Add uv.exe to path then execute the following command to install the dependencies:
-
-uv.exe sync
-
-c. Activate the virtual environment:
-
-.venv\Scripts\activate
-
-d. Lunch the server:
-
-python manage.py runserver 8000
-
-5. Make and apply database migrations:
-
-python manage.py makemigrations
-python manage.py migrate
-
-## Usage
-
-- Back-end API: http://localhost:8000
-- Admin interface: http://localhost:8000/admin
-- Front-end application: http://localhost:8080
-
-## Testing
-
-### Back-end Tests
-
-pytest -s
-
-### Front-end Tests
-
-npm run test:unit
-
-## Project Structure
-
-- `apps/`: Django applications (back-end)
-- `neuroa_app`: for candidates
-- `neuroa_sol`: for companies
-- `frontend/`: Vue.js application (front-end)
-- `src/`: Source code
-- `components/`: Reusable Vue components
-- `views/`: Page components
-- `router/`: Vue router configuration
-- `store/`: Global application state (Vuex)
-- `assets/`: Static resources
-
-## Deployment
-
-Deployment is managed by Forgejo Actions. Each push to the main branch triggers the CI/CD pipeline.
-
+Merci à Raphaël, Basile et Marie de l’IMTS pour leur accompagnement précieux pendant ce stage,  
+et à toutes les personnes œuvrant pour une technologie plus **inclusive et respectueuse**.
